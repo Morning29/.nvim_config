@@ -1,4 +1,3 @@
-
 ------------------------
 ---- DEFAULT GROUPS ----
 ------------------------
@@ -129,60 +128,60 @@
 local fg_normal = "#b0b0b0"
 -- stylua: ignore start
 local c = {
-    NONE = "none",
+    NONE            = "none",
 
-    fg_normal       = fg_normal, -- "#cccccc",
-    fg_normal_sbar  = "#707070", -- "#cccccc",
-    fg_float_sbar   = "#707070", -- "#cccccc",
-    fg_punctuation  = fg_normal, -- "#aaaaaa",
-    fg_string       = "#91b3d8", -- "#91b3d8",
-    fg_number       = "#FFFFFF", -- "#ffffff",
-    fg_type         = fg_normal, -- "#cbcbcb",
-    fg_builtintype  = "#fcd3af", -- "#cbcbcb",
-    fg_special      = fg_normal, -- "#cbcbcc",
-    fg_operator     = fg_normal, -- "#fcd3b0",
-    fg_border       = "#303030", -- "#424242", -- buffer separator
-    fg_comment      = "#707070", -- "#707070",
-    fg_keyword      = "#fcd3af", -- "#fcd3ad",
-    fg_keyword_dim  = "#907964", -- "#fcd3ad",
-    fg_cursorlinenr = "#707070", -- "#464646", -- cursorlinenr
-    fg_whitespace   = "#323232", -- "#464646", -- cursorlinenr
-    fg_gutter       = "#474747", -- "#474747", -- line number
-    fg_sidebar      = "#ff00ff", -- "#cecece",
-    fg_variable     = fg_normal, -- "#d0d0d0",
-    fg_function     = "#996c46", -- "#996c46",
-    fg_field        = "#d09b6e", -- "#d09b6e", -- "d09b6e"
-    fg_macro        = "#cccccc", -- "#fcd3af",
-    fg_statement    = "#fcd3af", -- "#fcd3af", -- statement, identifier,
-    fg_identifier   = "#cccccc", -- "#fcd3af", -- statement, identifier,
-    fg_todo         = "#a6c43d", -- "#a6c43d",
-    fg_unused       = "#707070", -- "#484848", -- unused function, unused variable
-    fg_constant     = fg_normal, -- "#a6744a", -- number (remap), boolean, matched brace (remap), constant
-    fg_editor       = "#ff9e64", -- "#ffc739"
-    fg_editor_dim   = "#915a39", -- "#ffc739"
+    fg_normal       = fg_normal,    -- "#cccccc",
+    fg_normal_sbar  = "#707070",    -- "#cccccc",
+    fg_float_sbar   = "#707070",    -- "#cccccc",
+    fg_punctuation  = fg_normal,    -- "#aaaaaa",
+    fg_string       = "#91b3d8",    -- "#91b3d8",
+    fg_number       = "#FFFFFF",    -- "#ffffff",
+    fg_type         = fg_normal,    -- "#cbcbcb",
+    fg_builtintype  = "#fcd3af",    -- "#cbcbcb",
+    fg_special      = fg_normal,    -- "#cbcbcc",
+    fg_operator     = fg_normal,    -- "#fcd3b0",
+    fg_border       = "#303030",    -- "#424242", -- buffer separator
+    fg_comment      = "#707070",    -- "#707070",
+    fg_keyword      = "#fcd3af",    -- "#fcd3ad",
+    fg_keyword_dim  = "#907964",    -- "#fcd3ad",
+    fg_cursorlinenr = "#707070",    -- "#464646", -- cursorlinenr
+    fg_whitespace   = "#323232",    -- "#464646", -- cursorlinenr
+    fg_gutter       = "#474747",    -- "#474747", -- line number
+    fg_sidebar      = "#ff00ff",    -- "#cecece",
+    fg_variable     = fg_normal,    -- "#d0d0d0",
+    fg_function     = "#996c46",    -- "#996c46",
+    fg_field        = "#d09b6e",    -- "#d09b6e", -- "d09b6e"
+    fg_macro        = "#cccccc",    -- "#fcd3af",
+    fg_statement    = "#fcd3af",    -- "#fcd3af", -- statement, identifier,
+    fg_identifier   = "#cccccc",    -- "#fcd3af", -- statement, identifier,
+    fg_todo         = "#a6c43d",    -- "#a6c43d",
+    fg_unused       = "#707070",    -- "#484848", -- unused function, unused variable
+    fg_constant     = fg_normal,    -- "#a6744a", -- number (remap), boolean, matched brace (remap), constant
+    fg_editor       = "#ff9e64",    -- "#ffc739"
+    fg_editor_dim   = "#915a39",    -- "#ffc739"
 
-    bg_light        = "#303030", -- "#b4b4b4", 
-    bg_dark         = "#242424", -- "#242424",
-    bg_border       = "#202020", -- "#242424",
-    bg_normal       = "#242424", -- "#242424", -- TODO: if using light theme then light and vice versa
-    bg_normal_sbar  = "#303030", -- "#242424", -- TODO: if using light theme then light and vice versa
-    bg_float        = "#303030", -- "#303030", -- TODO: if using light theme then dark and vice versa
-    bg_float_sbar   = "#343434", -- "#303030", -- TODO: if using light theme then dark and vice versa
-    bg_cursorline   = "#343434", -- "#343434",
-    bg_visual       = "#42372C", -- "#2d3f76",
-    bg_search       = "#2d4c9d", -- "#3e68d7",
-    bg_incsearch    = "#2e58c1", -- "#2e58c1",
-    bg_cursearch    = "#11709b", -- "#2e58c1",
-    bg_sidebar      = "#242424", -- "#242424",
-    bg_statusline   = "#303030", -- "#242424",
+    bg_light        = "#303030",    -- "#b4b4b4",
+    bg_dark         = "#242424",    -- "#242424",
+    bg_border       = "#202020",    -- "#242424",
+    bg_normal       = "#242424",    -- "#242424", -- TODO: if using light theme then light and vice versa
+    bg_normal_sbar  = "#303030",    -- "#242424", -- TODO: if using light theme then light and vice versa
+    bg_float        = "#303030",    -- "#303030", -- TODO: if using light theme then dark and vice versa
+    bg_float_sbar   = "#343434",    -- "#303030", -- TODO: if using light theme then dark and vice versa
+    bg_cursorline   = "#343434",    -- "#343434",
+    bg_visual       = "#42372C",    -- "#2d3f76",
+    bg_search       = "#2d4c9d",    -- "#3e68d7",
+    bg_incsearch    = "#2e58c1",    -- "#2e58c1",
+    bg_cursearch    = "#11709b",    -- "#2e58c1",
+    bg_sidebar      = "#242424",    -- "#242424",
+    bg_statusline   = "#303030",    -- "#242424",
 
-    diag = { -- TODO: colors and styles
-        fg_error       = "#e26a75", -- TODO,
-        fg_warning     = "#ffc739", -- TODO,
-        fg_info        = "#d0d0d0", -- TODO,
-        fg_hint        = "#404040", -- TODO,
-        fg_ok          = "#b8db87", -- TODO,
-        fg_unnecessary = "#707070",
+    diag            = {             -- TODO: colors and styles
+        fg_error             = "#e26a75", -- TODO,
+        fg_warning           = "#ffc739", -- TODO,
+        fg_info              = "#d0d0d0", -- TODO,
+        fg_hint              = "#404040", -- TODO,
+        fg_ok                = "#b8db87", -- TODO,
+        fg_unnecessary       = "#707070",
 
         fg_vtext_error       = "#893038", -- TODO,
         fg_vtext_warning     = "#463B12", -- TODO,
@@ -191,14 +190,17 @@ local c = {
         fg_vtext_ok          = "#455430", -- TODO,
 
         fg_vtext_unnecessary = "#707070",
-        sp_deprecated  = "#ffc739",
+        sp_deprecated        = "#ffc739",
     },
-    diff = { -- TODO: colors and stoyles
-        add    = "#b8db87",
-        change = "#7ca1f2",
-        delete = "#e26a75",
-        ignore = "#ffc739",
-        text   = "#545c7e",
+    diff            = { -- TODO: colors and stoyles
+        add           = "#b8db87",
+        change        = "#7ca1f2",
+        delete        = "#e26a75",
+        ignore        = "#ffc739",
+        text          = "#545c7e",
+        add_gutter    = "#384C38",
+        change_gutter = "#374752",
+        delete_gutter = "#656E76",
     },
 }
 
@@ -206,9 +208,9 @@ local groups = {
     Normal         = { fg = c.fg_normal, bg = c.bg_normal },
     -- NormalNC    = { fg = c.fg_normal, bg = c.bg_light },
     NormalNC       = { link = "Normal" },
-    EndOfBuffer    = { link = "Normal"},
+    EndOfBuffer    = { link = "Normal" },
     NormalFloat    = { bg = c.bg_float },
-    FloatTitle     = { fg = c.fg_normal, bg = c.bg_float, bold = true},
+    FloatTitle     = { fg = c.fg_normal, bg = c.bg_float, bold = true },
     FloatBorder    = { link = "NormalFloat" },
     Pmenu          = { bg = c.bg_float },
     PmenuSel       = { bg = c.bg_search },
@@ -234,69 +236,69 @@ local groups = {
     Whitespace     = { fg = c.fg_whitespace },
     SpecialKey     = { fg = c.fg_editor },
     NonText        = { link = "Comment" },
-    Directory      = { link = "Comment"}, -- "guifg=", "links to" etc when displaying :hi
+    Directory      = { link = "Comment" },                   -- "guifg=", "links to" etc when displaying :hi
     TabLineSel     = { fg = "#ff00ff", bg = c.fg_function }, -- Currently selected tab, the bg defines the line that marks the active tab.
-    Underlined     = { fg = c.fg_string, sp = c.fg_string, underline = true},
-    Substitute     = { bg = c.bg_search }, -- flash letters
-    QuickFixLine   = { bg = c.bg_float, sp = c.fg_function, bold = true},
+    Underlined     = { fg = c.fg_string, sp = c.fg_string, underline = true },
+    Substitute     = { bg = c.bg_search },                   -- flash letters
+    QuickFixLine   = { bg = c.bg_float, sp = c.fg_function, bold = true },
     PreProc        = { fg = c.fg_editor },
     Comment        = { fg = c.fg_comment },
     Todo           = { fg = c.fg_todo },
     Delimiter      = { fg = c.fg_punctuation },
     Special        = { fg = c.fg_special },
-    MsgArea        = { link = "normal"},
+    MsgArea        = { link = "normal" },
     SignColumn     = { bg = c.bg_normal },
     CursorLineSign = { link = "CursorLineNr" },
-    ModeMsg        = { link = "MsgArea"},
-    MsgSeparator   = { link = "WinSeparator"},
-    Question       = { link = "SpecialKey"},
+    ModeMsg        = { link = "MsgArea" },
+    MsgSeparator   = { link = "WinSeparator" },
+    Question       = { link = "SpecialKey" },
 
 
-    Type           = { fg = c.fg_type },
-    BuiltinType    = { fg = c.fg_builtintype },
-    Boolean        = { link = "BuiltinType" },
-    Float          = { link = "BuiltinType" },
-    Structure      = { link = "Type" },
-    String         = { fg = c.fg_string },
-    Character      = { link = "String" },
-    Number         = { fg = c.fg_number },
-    Constant       = { fg = c.fg_constant }, -- TODO: Should this be unique?
-    GlobalVariable = { fg = c.fg_constant, italic = true }, -- TODO: Should this be unique?
-    Include        = { fg = c.fg_keyword },
-    Define         = { fg = c.fg_keyword },
-    StorageClass   = { fg = c.fg_normal },
-    Macro          = { fg = c.fg_macro }, -- TODO: Should this be unique?
-    PreCondit      = { link = "Keyword" },
-    Tag            = { link = "Underlined" },
-    Typedef        = { link = "Type"},
+    Type                       = { fg = c.fg_type },
+    BuiltinType                = { fg = c.fg_builtintype },
+    Boolean                    = { link = "BuiltinType" },
+    Float                      = { link = "BuiltinType" },
+    Structure                  = { link = "Type" },
+    String                     = { fg = c.fg_string },
+    Character                  = { link = "String" },
+    Number                     = { fg = c.fg_number },
+    Constant                   = { fg = c.fg_constant },    -- TODO: Should this be unique?
+    GlobalVariable             = { fg = c.fg_constant, italic = true }, -- TODO: Should this be unique?
+    Include                    = { fg = c.fg_keyword },
+    Define                     = { fg = c.fg_keyword },
+    StorageClass               = { fg = c.fg_normal },
+    Macro                      = { fg = c.fg_macro }, -- TODO: Should this be unique?
+    PreCondit                  = { link = "Keyword" },
+    Tag                        = { link = "Underlined" },
+    Typedef                    = { link = "Type" },
 
-    cDefine        = { fg = c.fg_keyword },
-    cTypedef       = { fg = c.fg_keyword },
-    cppType        = { link = "BuiltinType" },
-    cType          = { link = "BuiltinType" },
+    cDefine                    = { fg = c.fg_keyword },
+    cTypedef                   = { fg = c.fg_keyword },
+    cppType                    = { link = "BuiltinType" },
+    cType                      = { link = "BuiltinType" },
 
-    Function    = { fg = c.fg_function },
-    Identifier  = { fg = c.fg_identifier },
-    Field       = { fg = c.fg_field },
-    Property    = { link = "Field" },
-    Conditional = { fg = c.fg_keyword },
-    Statement   = { fg = c.fg_statement },
-    Operator    = { fg = c.fg_operator },
-    Keyword     = { fg = c.fg_keyword },
-    Repeat      = { link = "Keyword" }, -- Loops etc.
-    Label       = { link = "Keyword" },
-    SpecialChar = { link = "Keyword" }, -- String escape etc.
+    Function                   = { fg = c.fg_function },
+    Identifier                 = { fg = c.fg_identifier },
+    Field                      = { fg = c.fg_field },
+    Property                   = { link = "Field" },
+    Conditional                = { fg = c.fg_keyword },
+    Statement                  = { fg = c.fg_statement },
+    Operator                   = { fg = c.fg_operator },
+    Keyword                    = { fg = c.fg_keyword },
+    Repeat                     = { link = "Keyword" }, -- Loops etc.
+    Label                      = { link = "Keyword" },
+    SpecialChar                = { link = "Keyword" }, -- String escape etc.
 
-    Spellbad = { undercurl = true, sp = c.sp_spellbad },
+    Spellbad                   = { undercurl = true, sp = c.sp_spellbad },
 
-    DiffAdd    = { fg = c.diff.add },
-    DiffChange = { fg = c.diff.change },
-    DiffDelete = { fg = c.diff.delete },
-    DiffText   = { fg = c.diff.text },
+    DiffAdd                    = { fg = c.diff.add },
+    DiffChange                 = { fg = c.diff.change },
+    DiffDelete                 = { fg = c.diff.delete },
+    DiffText                   = { fg = c.diff.text },
 
-    Error      = { fg = c.diag.fg_error },
-    ErrorMsg   = { fg = c.diag.fg_error },
-    WarningMsg = { fg = c.diag.fg_warning },
+    Error                      = { fg = c.diag.fg_error },
+    ErrorMsg                   = { fg = c.diag.fg_error },
+    WarningMsg                 = { fg = c.diag.fg_warning },
 
     DiagnosticError            = { fg = c.diag.fg_error },
     DiagnosticWarn             = { fg = c.diag.fg_warning },
@@ -304,7 +306,7 @@ local groups = {
     DiagnosticHint             = { fg = c.diag.fg_hint },
     DiagnosticOk               = { fg = c.diag.fg_ok },
     DiagnosticDeprecated       = { strikethrough = true, sp = c.diag.sp_deprecated }, -- TODO: this should be undercurled or something
-    DiagnosticUnnecessary      = { fg = c.diag.fg_unnecessary }, -- TODO: probably just link to unused
+    DiagnosticUnnecessary      = { fg = c.diag.fg_unnecessary },                      -- TODO: probably just link to unused
 
     DiagnosticUnderlineError   = { sp = c.diag.fg_error, underline = true },
     DiagnosticUnderlineWarn    = { sp = c.diag.fg_warning, underline = true },
@@ -318,23 +320,23 @@ local groups = {
     DiagnosticFloatingHint     = { fg = c.diag.fg_hint },
     DiagnosticFloatingOk       = { fg = c.diag.fg_ok },
 
-    DiagnosticVirtualTextError = { fg = c.diag.fg_vtext_error   , italic = true},
-    DiagnosticVirtualTextWarn  = { fg = c.diag.fg_vtext_warning , italic = true},
-    DiagnosticVirtualTextInfo  = { fg = c.diag.fg_vtext_info    , italic = true},
-    DiagnosticVirtualTextHint  = { fg = c.diag.fg_vtext_hint    , italic = true},
-    DiagnosticVirtualTextOk    = { fg = c.diag.fg_vtext_ok      , italic = true},
+    DiagnosticVirtualTextError = { fg = c.diag.fg_vtext_error, italic = true },
+    DiagnosticVirtualTextWarn  = { fg = c.diag.fg_vtext_warning, italic = true },
+    DiagnosticVirtualTextInfo  = { fg = c.diag.fg_vtext_info, italic = true },
+    DiagnosticVirtualTextHint  = { fg = c.diag.fg_vtext_hint, italic = true },
+    DiagnosticVirtualTextOk    = { fg = c.diag.fg_vtext_ok, italic = true },
 
-    DiagnosticSignError        = { fg = c.diag.fg_error},
-    DiagnosticSignWarn         = { fg = c.diag.fg_warning},
-    DiagnosticSignInfo         = { fg = c.diag.fg_info},
-    DiagnosticSignHint         = { fg = c.diag.fg_hint},
-    DiagnosticSignOk           = { fg = c.diag.fg_ok},
+    DiagnosticSignError        = { fg = c.diag.fg_error },
+    DiagnosticSignWarn         = { fg = c.diag.fg_warning },
+    DiagnosticSignInfo         = { fg = c.diag.fg_info },
+    DiagnosticSignHint         = { fg = c.diag.fg_hint },
+    DiagnosticSignOk           = { fg = c.diag.fg_ok },
 
-    IlluminatedWordText  = { bg = c.bg_cursorline },
-    IlluminatedWordRead  = { link = "IlluminatedWordText" },
-    IlluminatedWordWrite = { link = "IlluminatedWordText" },
+    IlluminatedWordText        = { bg = c.bg_cursorline },
+    IlluminatedWordRead        = { link = "IlluminatedWordText" },
+    IlluminatedWordWrite       = { link = "IlluminatedWordText" },
 
-    MiniIndentscopeSymbol = { link = "Whitespace" },
+    MiniIndentscopeSymbol      = { link = "Whitespace" },
 }
 
 local nvim_cmp_groups = {
@@ -403,80 +405,137 @@ local lsp_groups = {
     -- ["@lsp.typemod.variable.injected"] = { link = "@variable" },
 }
 
--- local bufferline_groups = {
-    -- -- the part of the tab that shows the number of diagnostic hits
-    -- BufferLineWarningDiagnostic         = {fg = "#f00123", bg = "#a1c461"},
-    -- BufferLineWarningDiagnosticVisible  = {fg = "#f00129", bg = "#a1c467"},
-    -- BufferLineInfoDiagnosticSelected    = {fg = "#f0011e", bg = "#a1c45c"},
-    -- BufferLineHintDiagnosticSelected    = {fg = "#f0011f", bg = "#a1c45d"},
-    -- BufferLineInfoDiagnosticVisible     = {fg = "#f00120", bg = "#a1c45e"},
-    -- BufferLineHintDiagnostic            = {fg = "#f00121", bg = "#a1c45f"},
-    -- BufferLineDiagnosticVisible         = {fg = "#f00122", bg = "#a1c460"},
-    -- BufferLineDiagnostic                = {fg = "#f00124", bg = "#a1c462"},
-    -- BufferLineHintDiagnosticVisible     = {fg = "#f00125", bg = "#a1c463"},
-    -- BufferLineInfoDiagnostic            = {fg = "#f00126", bg = "#a1c464"},
-    -- BufferLineErrorDiagnosticVisible    = {fg = "#f00127", bg = "#a1c465"},
-    -- BufferLineErrorDiagnostic           = {fg = "#f00128", bg = "#a1c466"},
-    -- BufferLineWarningDiagnosticSelected = {fg = "#f00133", bg = "#a1c47f"},
-    -- BufferLineErrorDiagnosticSelected   = {fg = "#f00133", bg = "#a1c47d"},
+local gitsigns_groups = {
+    -- GitSignsAdd
+    --          Used for the text of 'add' signs.
+    -- Fallbacks: `GitGutterAdd`, `SignifySignAdd`, `DiffAddedGutter`, `Added`, `DiffAdd`
     --
-    -- BufferLineGroupSeparator       = {fg = "#f00100", bg = "#a1c43e"},
-    -- BufferLineTruncMarker          = {fg = "#f00101", bg = "#a1c43f"},
-    -- BufferLineBuffer               = {fg = "#f00103", bg = "#a1c441"},
-    -- BufferLineNumbers              = {fg = "#f00108", bg = "#a1c446"},
-    -- BufferLineCloseButton          = {fg = "#f00109", bg = "#a1c447"},
-    -- BufferLineCloseButtonVisible   = {fg = "#f00113", bg = "#a1c451"},
-    -- BufferLineSeparatorSelected    = {fg = "#f00117", bg = "#a1c455"},
-    -- BufferLineSeparatorVisible     = {fg = "#f0011c", bg = "#a1c45a"},
-    -- BufferLineGroupLabel           = {fg = "#f0011d", bg = "#a1c45b"},
-    -- BufferLineOffsetSeparator      = {fg = "#f00133", bg = "#a1c472"},
-    -- BufferLineNumbersSelected      = {fg = "#f0012d", bg = "#a1c46b"},
-    -- BufferLineCloseButtonSelected  = {fg = "#f0012f", bg = "#a1c46d"},
-    -- BufferLinePickVisible          = {fg = "#f00133", bg = "#a1c473"},
-    -- BufferLinePickSelected         = {fg = "#f00133", bg = "#a1c474"},
-    -- BufferLinePick                 = {fg = "#f00133", bg = "#a1c47e"},
+    -- GitSignsChange
+    --         Used for the text of 'change' signs.
+    -- Fallbacks: `GitGutterChange`, `SignifySignChange`, `DiffModifiedGutter`, `Changed`, `DiffChange`
     --
-    -- BufferLineFill               = { fg = c.fg_todo,       bg = c.bg_border}, -- background
-    -- BufferLineBackground         = { fg = c.fg_comment,    bg = c.bg_border, sp = c.fg_gutter,}, -- tab background
-    -- BufferLineSeparator          = { fg = c.bg_border,     bg = c.bg_border, sp = c.bg_border }, -- last symbol on the right of a tab (except right-most tab)
-    -- BufferLineError              = { fg = c.diag.fg_error, bg = c.bg_border, sp = c.fg_border, underline = true},
-    -- BufferLineErrorVisible       = { fg = c.diag.fg_error, bg = c.bg_border, sp = c.fg_border, underline = true},
+    -- GitSignsDelete
+    --         Used for the text of 'delete' signs.
+    -- Fallbacks: `GitGutterDelete`, `SignifySignDelete`, `DiffRemovedGutter`, `Removed`, `DiffDelete`
     --
-    -- BufferLineHint               = { link = "BufferLineBackground" }, -- non-visible buffer with hint
-    -- BufferLineInfo               = { link = "BufferLineBackground" },
-    -- BufferLineWarning            = { link = "BufferLineBackground" },
-    -- BufferLineModified           = { link = "BufferLineBackground" },
-    -- BufferLineDuplicate          = { link = "BufferLineBackground" },
+    -- GitSignsChangedelete
+    --         Used for the text of 'changedelete' signs.
+    -- Fallbacks: `GitSignsChange`
     --
-    -- BufferLineTabClose           = { link = "BufferLineBackground" },
-    -- BufferLineTab                = { link = "BufferLineBackground" },
+    -- GitSignsTopdelete
+    --         Used for the text of 'topdelete' signs.
+    -- Fallbacks: `GitSignsDelete`
     --
-    -- BufferLineTabSeparator       = { link = "BufferLineSeparator" },
+    -- GitSignsUntracked
+    --         Used for the text of 'untracked' signs.
+    -- Fallbacks: `GitSignsAdd`
     --
-    -- BufferLineBufferVisible      = {fg = c.fg_comment, bg = c.bg_border, sp = c.fg_comment },-- visible tab background
+    -- GitSignsAddNr
+    --         Used for number column (when `config.numhl == true`) of 'add' signs.
+    -- Fallbacks: `GitGutterAddLineNr`, `GitSignsAdd`
     --
-    -- BufferLineHintVisible        = { link = "BufferLineBufferVisible"}, -- visible buffer with hint
-    -- BufferLineNumbersVisible     = { link = "BufferLineBufferVisible"},
-    -- BufferLineInfoVisible        = { link = "BufferLineBufferVisible"},
-    -- BufferLineWarningVisible     = { link = "BufferLineBufferVisible"}, -- visible buffer with warning
-    -- BufferLineModifiedVisible    = { link = "BufferLineBufferVisible"},
-    -- BufferLineDuplicateVisible   = { link = "BufferLineBufferVisible"},
-    -- BufferLineIndicatorVisible   = { link = "BufferLineBufferVisible"},
+    -- GitSignsChangeNr
+    --         Used for number column (when `config.numhl == true`) of 'change' signs.
+    -- Fallbacks: `GitGutterChangeLineNr`, `GitSignsChange`
     --
-    -- BufferLineBufferSelected     = {fg = c.fg_normal,     bg = c.bg_float, sp = c.fg_function, underline = true, bold = true},
-    -- BufferLineErrorSelected      = {fg = c.diag.fg_error, bg = c.bg_float, sp = c.fg_function, underline = true, bold = true},
+    -- GitSignsDeleteNr
+    --         Used for number column (when `config.numhl == true`) of 'delete' signs.
+    -- Fallbacks: `GitGutterDeleteLineNr`, `GitSignsDelete`
     --
-    -- BufferLineInfoSelected       = { link = "BufferLineBufferSelected"},
-    -- BufferLineHintSelected       = { link = "BufferLineBufferSelected"},
-    -- BufferLineWarningSelected    = { link = "BufferLineBufferSelected"},
-    -- BufferLineDiagnosticSelected = { link = "BufferLineBufferSelected"},
-    -- BufferLineModifiedSelected   = { link = "BufferLineBufferSelected"},
-    -- BufferLineDuplicateSelected  = { link = "BufferLineBufferSelected"},
-    -- BufferLineIndicatorSelected  = { link = "BufferLineBufferSelected"},
+    -- GitSignsChangedeleteNr
+    --         Used for number column (when `config.numhl == true`) of 'changedelete' signs.
+    -- Fallbacks: `GitSignsChangeNr`
     --
-    -- BufferLineTabSeparatorSelected = { link = "BufferLineSeparator"},
-    -- BufferLineTabSelected          = { link = "BufferLineBufferSelected"},
--- }
+    -- GitSignsTopdeleteNr
+    --         Used for number column (when `config.numhl == true`) of 'topdelete' signs.
+    -- Fallbacks: `GitSignsDeleteNr`
+    --
+    -- GitSignsUntrackedNr
+    --         Used for number column (when `config.numhl == true`) of 'untracked' signs.
+    -- Fallbacks: `GitSignsAddNr`
+    --
+    -- GitSignsAddLn
+    --         Used for buffer line (when `config.linehl == true`) of 'add' signs.
+    -- Fallbacks: `GitGutterAddLine`, `SignifyLineAdd`, `DiffAdd`
+    --
+    -- GitSignsChangeLn
+    --         Used for buffer line (when `config.linehl == true`) of 'change' signs.
+    -- Fallbacks: `GitGutterChangeLine`, `SignifyLineChange`, `DiffChange`
+    --
+    -- GitSignsChangedeleteLn
+    --         Used for buffer line (when `config.linehl == true`) of 'changedelete' signs.
+    -- Fallbacks: `GitSignsChangeLn`
+    --
+    -- GitSignsUntrackedLn
+    --         Used for buffer line (when `config.linehl == true`) of 'untracked' signs.
+    -- Fallbacks: `GitSignsAddLn`
+    --
+    -- GitSignsAddPreview
+    --         Used for added lines in previews.
+    -- Fallbacks: `GitGutterAddLine`, `SignifyLineAdd`, `DiffAdd`
+    --
+    -- GitSignsDeletePreview
+    --         Used for deleted lines in previews.
+    -- Fallbacks: `GitGutterDeleteLine`, `SignifyLineDelete`, `DiffDelete`
+    --
+    -- GitSignsCurrentLineBlame
+    --         Used for current line blame.
+    -- Fallbacks: `NonText`
+    --
+    -- GitSignsAddInline
+    --         Used for added word diff regions in inline previews.
+    -- Fallbacks: `TermCursor`
+    --
+    -- GitSignsDeleteInline
+    --         Used for deleted word diff regions in inline previews.
+    -- Fallbacks: `TermCursor`
+    --
+    -- GitSignsChangeInline
+    --         Used for changed word diff regions in inline previews.
+    -- Fallbacks: `TermCursor`
+    --
+    -- GitSignsAddLnInline
+    --         Used for added word diff regions when `config.word_diff == true`.
+    -- Fallbacks: `GitSignsAddInline`
+    --
+    -- GitSignsChangeLnInline
+    --         Used for changed word diff regions when `config.word_diff == true`.
+    -- Fallbacks: `GitSignsChangeInline`
+    --
+    -- GitSignsDeleteLnInline
+    --         Used for deleted word diff regions when `config.word_diff == true`.
+    -- Fallbacks: `GitSignsDeleteInline`
+    --
+    -- GitSignsDeleteVirtLn
+    --         Used for deleted lines shown by inline `preview_hunk_inline()` or `show_deleted()`.
+    -- Fallbacks: `GitGutterDeleteLine`, `SignifyLineDelete`, `DiffDelete`
+    --
+    -- GitSignsDeleteVirtLnInLine
+    --         Used for word diff regions in lines shown by inline `preview_hunk_inline()` or `show_deleted()`.
+    -- Fallbacks: `GitSignsDeleteLnInline`
+
+    -- GitSignsVirtLnum
+    --         Used for line numbers in inline hunks previews.
+    -- Fallbacks: `GitSignsDeleteVirtLn`  
+
+
+    GitSignsAdd            = { fg = c.diff.add_gutter }, -- guifg=#597b60
+    GitSignsChange         = { fg = c.diff.change_gutter},                        -- guifg=#467c7b
+    GitSignsDelete         = { fg = c.diff.delete_gutter},                        -- guifg=#7f605c
+    GitSignsStagedAdd            = { link = "GitSignsAdd" }, -- guifg=#597b60
+    GitSignsStagedChange         = { link = "GitSignsChange" },                        -- guifg=#467c7b
+    GitSignsStagedDelete         = { link = "GitSignsDelete" },                        -- guifg=#7f605c
+    GitSignsStagedChangedelete   = { link = "GitSignsChange" },                        -- guifg=#467c7b
+    GitSignsStagedTopdelete      = { link = "GitSignsDelete" },                        -- guifg=#7f605c
+    GitSignsStagedAddNr          = { link = "GitSignsAdd" },                        -- guifg=#597b60
+    GitSignsStagedChangeNr       = { link = "GitSignsChange" },                        -- guifg=#467c7b
+    GitSignsStagedDeleteNr       = { link = "GitSignsDelete" },                        -- guifg=#7f605c
+    GitSignsStagedChangedeleteNr = { link = "GitSignsChange" },
+    GitSignsStagedTopdeleteNr    = { link = "GitSignsDelete" },                        -- guifg=#7f605c
+    GitSignsStagedAddLn          = { link = "GitSignsAdd" },                        -- guifg=#5c6d43
+    GitSignsStagedChangeLn       = { link = "GitSignsChange" },                        -- guifg=#3e5079
+    GitSignsStagedChangedeleteLn = { link = "GitSignsChange" },                        -- guifg=#3e5079
+}
 
 local todos = {
     SpellCap       = { fg = "#ff0100", bg = "#a6c43e" },
@@ -520,9 +579,9 @@ for name, val in pairs(lsp_groups) do
     vim.api.nvim_set_hl(0, name, val)
 end
 
--- for name, val in pairs(bufferline_groups) do
---     vim.api.nvim_set_hl(0, name, val)
--- end
+for name, val in pairs(gitsigns_groups) do
+    vim.api.nvim_set_hl(0, name, val)
+end
 
 for name, val in pairs(todos) do
     vim.api.nvim_set_hl(0, name, val)

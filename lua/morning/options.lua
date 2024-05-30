@@ -30,6 +30,7 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 4
 
+vim.opt.more = true
 vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 500
 vim.opt.list = true

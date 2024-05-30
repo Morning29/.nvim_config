@@ -105,7 +105,7 @@ vim.keymap.set("n", "<leader>pss", [[<cmd>Obsess<cr>]], {})        -- [PLUGIN] v
 vim.keymap.set("n", "<leader>psd", [[<cmd>Obsess!<cr>]], {})       -- [PLUGIN] vim-obsession
 vim.keymap.set("n", "<leader>pp", [[<cmd>so Session.vim<cr>]], {}) -- [PLUGIN] vim-obsession
 
-vim.keymap.set("n", "<leader>gs", vim.cmd.Git);
+vim.keymap.set("n", "<leader>gg", vim.cmd.Git);
 
 -- [PLUGIN] persistence.nvim
 -- restore the session for the current directory
