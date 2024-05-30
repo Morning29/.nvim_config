@@ -1,0 +1,1 @@
+noremap <buffer> i k
