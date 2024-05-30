@@ -57,5 +57,6 @@ require('pckr').add {
     { 'tpope/vim-obsession' },
     { 'folke/todo-comments.nvim' },
     { 'junegunn/vim-easy-align' },
+    { 'lewis6991/gitsigns.nvim' },
     -- { 'nvim-lualine/lualine.nvim' },
 }
