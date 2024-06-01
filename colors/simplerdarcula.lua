@@ -237,7 +237,6 @@ local groups = {
     SpecialKey     = { fg = c.fg_editor },
     NonText        = { link = "Comment" },
     Directory      = { link = "Comment" },                   -- "guifg=", "links to" etc when displaying :hi
-    TabLineSel     = { fg = "#ff00ff", bg = c.fg_function }, -- Currently selected tab, the bg defines the line that marks the active tab.
     Underlined     = { fg = c.fg_string, sp = c.fg_string, underline = true },
     Substitute     = { bg = c.bg_search },                   -- flash letters
     QuickFixLine   = { bg = c.bg_float, sp = c.fg_function, bold = true },
@@ -253,6 +252,9 @@ local groups = {
     MsgSeparator   = { link = "WinSeparator" },
     Question       = { link = "SpecialKey" },
 
+    TabLineSel     = { bold = true }, -- Currently selected tab, the bg defines the line that marks the active tab.
+    TabLine        = { bg = c.bg_light },
+    TabLineFill    = { bg = c.bg_light },
 
     Type                       = { fg = c.fg_type },
     BuiltinType                = { fg = c.fg_builtintype },
@@ -541,8 +543,6 @@ local todos = {
     SpellCap       = { fg = "#ff0100", bg = "#a6c43e" },
     SpellLocal     = { fg = "#ff0101", bg = "#a6c43f" },
     SpellRare      = { fg = "#ff0102", bg = "#a6c440" },
-    TabLine        = { fg = "#ff0103", bg = "#a6c441" },
-    TabLineFill    = { fg = "#ff0104", bg = "#a6c442" },
     Exception      = { fg = "#ff0109", bg = "#a6c447" },
     SpecialComment = { fg = "#ff0111", bg = "#a6c44f" },
     Debug          = { fg = "#ff0112", bg = "#a6c450" },

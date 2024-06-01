@@ -1,5 +1,31 @@
 vim.cmd('colorscheme simplerdarcula')
 
+local function is_wsl()
+    if not vim.fn.has("unix") then
+        return false
+    end
+
+    local line = vim.fn.readfile("/proc/version")[1]
+    return string.match(line, "Microsoft") or string.match(line, "microsoft")
+end
+
+if is_wsl then
+    vim.cmd(
+        [[ let g:clipboard = {
+                \   'name': 'WslClipboard',
+                \   'copy': {
+                \      '+': 'clip.exe',
+                \      '*': 'clip.exe',
+                \    },
+                \   'paste': {
+                \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+                \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+                \   },
+                \   'cache_enabled': 0,
+                \ } ]]
+    )
+end
+
 vim.opt.rnu = true
 vim.opt.nu = true
 
@@ -8,8 +34,8 @@ vim.opt.pumheight = 30
 vim.opt.conceallevel = 0
 vim.opt.cursorline = true
 -- guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
-vim.opt.guicursor = 'n-v-c-sm:block-blinkwait250-blinkon250-blinkoff250,i-ci-ve:ver25-blinkwait250-blinkon250-blinkoff250,r-cr-o:hor20-blinkwait250-blinkon250-blinkoff250'
-
+-- vim.opt.guicursor = 'n-v-c-sm:block-blinkwait250-blinkon250-blinkoff250,i-ci-ve:ver25-blinkwait250-blinkon250-blinkoff250,r-cr-o:hor20-blinkwait250-blinkon250-blinkoff250'
+vim.opt.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'
 
 vim.opt.ignorecase = true
 vim.opt.inccommand = 'nosplit'

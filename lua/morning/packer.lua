@@ -33,7 +33,6 @@ require('pckr').add {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v3.x',
         requires = {
-            --- Uncomment the two plugins below if you want to manage the language servers from neovim
             { 'williamboman/mason.nvim' },
             { 'williamboman/mason-lspconfig.nvim' },
 
@@ -45,18 +44,15 @@ require('pckr').add {
             { 'L3MON4D3/LuaSnip' },
             { 'saadparwaiz1/cmp_luasnip' },
             { 'rafamadriz/friendly-snippets' },
-
         }
     },
     { 'mbbill/undotree' },
     { 'tpope/vim-fugitive' },
-    { 'rafcamlet/nvim-luapad' },
     { 'kylechui/nvim-surround' },
     { 'echasnovski/mini.indentscope' },
-    -- { 'folke/persistence.nvim' },
     { 'tpope/vim-obsession' },
     { 'folke/todo-comments.nvim' },
     { 'junegunn/vim-easy-align' },
     { 'lewis6991/gitsigns.nvim' },
-    -- { 'nvim-lualine/lualine.nvim' },
+    { 'rafcamlet/nvim-luapad' },
 }
