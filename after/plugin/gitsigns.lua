@@ -25,9 +25,9 @@ require('gitsigns').setup {
         virt_text_priority = 100,
     },
     current_line_blame_formatter      = '<author>|<author_time:%Y-%m-%d %H:%M>|<summary>',
-    current_line_blame_formatter_opts = {
-        relative_time = false,
-    },
+    -- current_line_blame_formatter_opts = {
+    --     relative_time = false,
+    -- },
     sign_priority                     = 6,
     update_debounce                   = 100,
     status_formatter                  = nil,   -- Use default
@@ -67,17 +67,17 @@ require('gitsigns').setup {
         end)
 
         -- Actions
-        map('n', '<leader>grh', gitsigns.reset_hunk)
-        map('v', '<leader>grh', function() gitsigns.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
-        map('n', '<leader>grb', gitsigns.reset_buffer)
-        map('n', '<leader>gss', gitsigns.stage_buffer)
-        map('n', '<leader>gsu', gitsigns.undo_stage_hunk)
-        map('n', '<leader>gph', gitsigns.preview_hunk)
-        map('n', '<leader>gbb', function() gitsigns.blame_line { full = true } end)
-        map('n', '<leader>gta', gitsigns.toggle_current_line_blame)
-        map('n', '<leader>gtd', gitsigns.toggle_deleted)
-        map('n', '<leader>gdd', gitsigns.diffthis)
-        map('n', '<leader>gdD', function() gitsigns.diffthis('~') end)
+        map('n', '<leader>vrh', gitsigns.reset_hunk)
+        map('v', '<leader>vrh', function() gitsigns.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
+        map('n', '<leader>vrb', gitsigns.reset_buffer)
+        map('n', '<leader>vss', gitsigns.stage_buffer)
+        map('n', '<leader>vsu', gitsigns.undo_stage_hunk)
+        map('n', '<leader>vph', gitsigns.preview_hunk)
+        map('n', '<leader>vbb', function() gitsigns.blame_line { full = true } end)
+        map('n', '<leader>vta', gitsigns.toggle_current_line_blame)
+        map('n', '<leader>vtd', gitsigns.toggle_deleted)
+        map('n', '<leader>vdd', gitsigns.diffthis)
+        map('n', '<leader>vdD', function() gitsigns.diffthis('~') end)
 
         -- Text object
         -- map({ 'o', 'x' }, 'hgh', ':<C-U>Gitsigns select_hunk<CR>')

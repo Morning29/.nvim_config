@@ -1,4 +1,5 @@
 local cmp = require("cmp")
+local luasnip = require("luasnip")
 
 require('luasnip.loaders.from_vscode').lazy_load()
 
@@ -11,7 +12,7 @@ cmp.setup({
     },
     ---
     experimental = {
-        ghost_text = true
+        ghost_text = false
     },
     ---
     window = {
@@ -29,7 +30,7 @@ cmp.setup({
                 item.menu = ""
             end
             item.menu = (({
-                nvim_lsp = "[LSP] ",
+                nvim_lsp = "[lsp] ",
                 nvim_lua = "[vim]",
                 path = "[pth]",
                 luasnip = "[snp]",
@@ -41,7 +42,7 @@ cmp.setup({
     ---
     snippet = {
         expand = function(args)
-            require('luasnip').lsp_expand(args.body)
+            luasnip.lsp_expand(args.body)
         end,
     },
     ---
@@ -63,8 +64,14 @@ cmp.setup({
         end, { "i" }),
         ["<CR>"] = cmp.mapping({
             i = function(fallback)
-                if cmp.visible() and cmp.get_active_entry() then
-                    cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                if cmp.visible() then
+                    if luasnip.expandable() then
+                        luasnip.expand()
+                    elseif cmp.get_active_entry() then
+                        cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                    else
+                        fallback()
+                    end
                 else
                     fallback()
                 end
@@ -73,7 +80,9 @@ cmp.setup({
         }),
         ["<Tab>"] = cmp.mapping({
             i = function(fallback)
-                if cmp.visible() then
+                if luasnip.locally_jumpable(1) then
+                    luasnip.jump(1)
+                elseif cmp.visible() then
                     local entry = cmp.get_selected_entry()
                     if not entry then
                         cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })

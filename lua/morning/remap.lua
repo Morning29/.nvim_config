@@ -3,6 +3,7 @@
 --
 --
 vim.g.mapleader = " "
+vim.keymap.set({ "n", "i", "v" }, "<C-h>", "<nop>")
 
 -- autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup='Visual', timeout=300}
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -11,6 +12,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank({ higroup = 'Visual', timeout = 300 })
     end,
 })
+
+-- vim.keymap.set("c", "<S-Enter>", function()
+--     require("noice").redirect(vim.fn.getcmdline())
+-- end, { noremap = true, silent = true })
 
 vim.keymap.set("i", "<F15>",
     "<cmd>set formatoptions+=r<cr><cr><cmd>set formatoptions-=r<cr>",
@@ -91,6 +96,15 @@ vim.keymap.set("v", "s", '"_s', { noremap = true, silent = true })
 
 -- Replace visually selected text to black hole register
 vim.keymap.set("x", "p", '"_dP', { noremap = true, silent = true })
+vim.keymap.set("x", "<M-p>", '"*dP', { noremap = true, silent = true })
+
+vim.keymap.set("n", "<M-y>", '"*y', { noremap = true, silent = true })
+vim.keymap.set("i", "<M-y>", '"*y', { noremap = true, silent = true })
+vim.keymap.set("x", "<M-y>", '"*y', { noremap = true, silent = true })
+
+vim.keymap.set("n", "<M-p>", '"*p', { noremap = true, silent = true })
+vim.keymap.set("i", "<M-p>", '"*p', { noremap = true, silent = true })
+vim.keymap.set("x", "<M-p>", '"*p', { noremap = true, silent = true })
 
 -- Cut to yank register
 vim.keymap.set("n", "x", '"+d', { noremap = true, silent = true })
@@ -115,13 +129,15 @@ vim.keymap.set("n", "<leader>gg", vim.cmd.Git);
 
 
 -- Quick fix
--- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>")
--- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>")
--- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>")
--- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>")
+vim.keymap.set("n", "<leader>qq", "<cmd>crewind<CR>")
+vim.keymap.set("n", "<leader>qlq", "<cmd>lrewind<CR>")
+vim.keymap.set("n", "<leader>qn", "<cmd>cnext<CR>")
+vim.keymap.set("n", "<leader>qN", "<cmd>cprev<CR>")
+vim.keymap.set("n", "<leader>qln", "<cmd>next<CR>")
+vim.keymap.set("n", "<leader>qlN", "<cmd>lprev<CR>")
 
 -- Search/replace word under cursor.
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left><Space><Backspace>]])
 
 -- vim-easy-align
 vim.keymap.set("x", "<leader>a", "<Plug>(EasyAlign)")

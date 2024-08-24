@@ -63,6 +63,8 @@ vim.opt.list = true
 
 vim.opt.foldenable = false
 vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
+vim.opt.path:append(",**/include") -- TODO: perhaps only do this when it makes sense.
+vim.cmd('set isfname-=#')
 -- formatoptions=jcroql
 vim.opt.formatoptions:append({
     -- Attempt to remove comment char(s) when joining comment lines with 'J'

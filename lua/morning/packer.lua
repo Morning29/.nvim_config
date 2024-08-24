@@ -29,23 +29,20 @@ require('pckr').add {
             ts_update()
         end,
     },
-    {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v3.x',
-        requires = {
-            { 'williamboman/mason.nvim' },
-            { 'williamboman/mason-lspconfig.nvim' },
-
-            { 'neovim/nvim-lspconfig' },
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-nvim-lua' },
-            { 'hrsh7th/cmp-cmdline' },
-            { 'L3MON4D3/LuaSnip' },
-            { 'saadparwaiz1/cmp_luasnip' },
-            { 'rafamadriz/friendly-snippets' },
-        }
-    },
+    -- { 'folke/noice.nvim',
+    --     requires = { { "MunifTanjim/nui.nvim" } }
+    -- },
+    { 'ziglang/zig.vim' },
+    { 'williamboman/mason.nvim' },
+    { 'williamboman/mason-lspconfig.nvim' },
+    { 'neovim/nvim-lspconfig' },
+    { 'hrsh7th/nvim-cmp' },
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'hrsh7th/cmp-nvim-lua' },
+    { 'hrsh7th/cmp-cmdline' },
+    { 'L3MON4D3/LuaSnip' },
+    { 'saadparwaiz1/cmp_luasnip' },
+    { 'rafamadriz/friendly-snippets' },
     { 'mbbill/undotree' },
     { 'tpope/vim-fugitive' },
     { 'kylechui/nvim-surround' },

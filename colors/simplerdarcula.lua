@@ -130,56 +130,57 @@ local fg_normal = "#b0b0b0"
 local c = {
     NONE            = "none",
 
-    fg_normal       = fg_normal,    -- "#cccccc",
-    fg_normal_sbar  = "#707070",    -- "#cccccc",
-    fg_float_sbar   = "#707070",    -- "#cccccc",
-    fg_punctuation  = fg_normal,    -- "#aaaaaa",
-    fg_string       = "#91b3d8",    -- "#91b3d8",
-    fg_number       = "#FFFFFF",    -- "#ffffff",
-    fg_type         = fg_normal,    -- "#cbcbcb",
-    fg_builtintype  = "#fcd3af",    -- "#cbcbcb",
-    fg_special      = fg_normal,    -- "#cbcbcc",
-    fg_operator     = fg_normal,    -- "#fcd3b0",
-    fg_border       = "#303030",    -- "#424242", -- buffer separator
-    fg_comment      = "#707070",    -- "#707070",
-    fg_keyword      = "#fcd3af",    -- "#fcd3ad",
-    fg_keyword_dim  = "#907964",    -- "#fcd3ad",
-    fg_cursorlinenr = "#707070",    -- "#464646", -- cursorlinenr
-    fg_whitespace   = "#323232",    -- "#464646", -- cursorlinenr
-    fg_gutter       = "#474747",    -- "#474747", -- line number
-    fg_sidebar      = "#ff00ff",    -- "#cecece",
-    fg_variable     = fg_normal,    -- "#d0d0d0",
-    fg_function     = "#996c46",    -- "#996c46",
-    fg_field        = "#d09b6e",    -- "#d09b6e", -- "d09b6e"
-    fg_macro        = "#cccccc",    -- "#fcd3af",
-    fg_statement    = "#fcd3af",    -- "#fcd3af", -- statement, identifier,
-    fg_identifier   = "#cccccc",    -- "#fcd3af", -- statement, identifier,
-    fg_todo         = "#a6c43d",    -- "#a6c43d",
-    fg_unused       = "#707070",    -- "#484848", -- unused function, unused variable
-    fg_constant     = fg_normal,    -- "#a6744a", -- number (remap), boolean, matched brace (remap), constant
-    fg_editor       = "#ff9e64",    -- "#ffc739"
-    fg_editor_dim   = "#915a39",    -- "#ffc739"
+    fg_normal       = fg_normal, -- "#cccccc",
+    fg_normal_sbar  = "#707070", -- "#cccccc",
+    fg_float_sbar   = "#707070", -- "#cccccc",
+    fg_punctuation  = fg_normal, -- "#aaaaaa",
+    fg_string       = "#91b3d8", -- "#91b3d8",
+    fg_number       = "#FFFFFF", -- "#ffffff",
+    fg_type         = fg_normal, -- "#cbcbcb",
+    fg_builtintype  = "#fcd3af", -- "#cbcbcb",
+    fg_special      = fg_normal, -- "#cbcbcc",
+    fg_operator     = fg_normal, -- "#fcd3b0",
+    fg_border       = "#303030", -- "#424242", -- buffer separator
+    fg_comment      = "#707070", -- "#707070",
+    fg_keyword      = "#fcd3af", -- "#fcd3ad",
+    fg_keyword_dim  = "#907964", -- "#fcd3ad",
+    fg_cursorlinenr = "#707070", -- "#464646", -- cursorlinenr
+    fg_whitespace   = "#323232", -- "#464646", -- cursorlinenr
+    fg_gutter       = "#474747", -- "#474747", -- line number
+    fg_sidebar      = "#ff00ff", -- "#cecece",
+    fg_variable     = fg_normal, -- "#d0d0d0",
+    fg_function     = "#996c46", -- "#996c46",
+    fg_field        = "#d09b6e", -- "#d09b6e", -- "d09b6e"
+    fg_macro        = "#cccccc", -- "#fcd3af",
+    fg_statement    = "#fcd3af", -- "#fcd3af", -- statement, identifier,
+    fg_identifier   = "#cccccc", -- "#fcd3af", -- statement, identifier,
+    fg_todo         = "#a6c43d", -- "#a6c43d",
+    fg_unused       = "#707070", -- "#484848", -- unused function, unused variable
+    fg_constant     = fg_normal, -- "#a6744a", -- number (remap), boolean, matched brace (remap), constant
+    fg_editor       = "#ff9e64", -- "#ffc739"
+    fg_editor_dim   = "#915a39", -- "#ffc739"
 
-    bg_light        = "#303030",    -- "#b4b4b4",
-    bg_dark         = "#242424",    -- "#242424",
-    bg_border       = "#202020",    -- "#242424",
-    bg_normal       = "#242424",    -- "#242424", -- TODO: if using light theme then light and vice versa
-    bg_normal_sbar  = "#303030",    -- "#242424", -- TODO: if using light theme then light and vice versa
-    bg_float        = "#303030",    -- "#303030", -- TODO: if using light theme then dark and vice versa
-    bg_float_sbar   = "#343434",    -- "#303030", -- TODO: if using light theme then dark and vice versa
-    bg_cursorline   = "#343434",    -- "#343434",
-    bg_visual       = "#42372C",    -- "#2d3f76",
-    bg_search       = "#2d4c9d",    -- "#3e68d7",
-    bg_incsearch    = "#2e58c1",    -- "#2e58c1",
-    bg_cursearch    = "#11709b",    -- "#2e58c1",
-    bg_sidebar      = "#242424",    -- "#242424",
-    bg_statusline   = "#303030",    -- "#242424",
+    bg_light        = "#303030", -- "#b4b4b4",
+    bg_dark         = "#242424", -- "#242424",
+    bg_border       = "#202020", -- "#242424",
+    bg_normal       = "#242424", -- "#242424", -- TODO: if using light theme then light and vice versa
+    bg_normal_sbar  = "#303030", -- "#242424", -- TODO: if using light theme then light and vice versa
+    bg_float        = "#303030", -- "#303030", -- TODO: if using light theme then dark and vice versa
+    bg_float_sbar   = "#343434", -- "#303030", -- TODO: if using light theme then dark and vice versa
+    bg_cursorline   = "#343434", -- "#343434",
+    bg_visual       = "#42372C", -- "#2d3f76",
+    bg_search       = "#2d4c9d", -- "#3e68d7",
+    bg_incsearch    = "#2e58c1", -- "#2e58c1",
+    bg_cursearch    = "#11709b", -- "#2e58c1",
+    bg_sidebar      = "#242424", -- "#242424",
+    bg_statusline   = "#303030", -- "#242424",
 
-    diag            = {             -- TODO: colors and styles
+    -- NOTE: asdf
+    diag            = {                   -- TODO: colors and styles
         fg_error             = "#e26a75", -- TODO,
         fg_warning           = "#ffc739", -- TODO,
         fg_info              = "#d0d0d0", -- TODO,
-        fg_hint              = "#404040", -- TODO,
+        fg_hint              = "#505050", -- TODO,
         fg_ok                = "#b8db87", -- TODO,
         fg_unnecessary       = "#707070",
 
@@ -205,56 +206,56 @@ local c = {
 }
 
 local groups = {
-    Normal         = { fg = c.fg_normal, bg = c.bg_normal },
+    Normal                     = { fg = c.fg_normal, bg = c.bg_normal },
     -- NormalNC    = { fg = c.fg_normal, bg = c.bg_light },
-    NormalNC       = { link = "Normal" },
-    EndOfBuffer    = { link = "Normal" },
-    NormalFloat    = { bg = c.bg_float },
-    FloatTitle     = { fg = c.fg_normal, bg = c.bg_float, bold = true },
-    FloatBorder    = { link = "NormalFloat" },
-    Pmenu          = { bg = c.bg_float },
-    PmenuSel       = { bg = c.bg_search },
-    PmenuSbar      = { bg = c.bg_float_sbar },
-    PmenuThumb     = { bg = c.fg_float_sbar },
-    MoreMsg        = { fg = c.fg_normal, bg = c.bg_float, bold = true },
-    Visual         = { bg = c.bg_visual },
-    Search         = { bg = c.bg_search },
-    CurSearch      = { bg = c.bg_cursearch },
-    IncSearch      = { bg = c.bg_incsearch },
-    MatchParen     = { bg = c.bg_incsearch },
-    Cursor         = { fg = c.bg_normal, bg = c.fg_normal, reverse = false },
-    CursorLine     = { bg = c.bg_cursorline },
-    CursorLineNr   = { fg = c.fg_cursorlinenr },
-    LineNr         = { fg = c.fg_gutter },
-    LineNrAbove    = { link = "LineNr" },
-    LineNrBelow    = { link = "LineNr" },
-    WinSeparator   = { fg = c.fg_border },
-    StatusLine     = { bg = c.bg_statusline, italic = true }, -- to avoid ^ in statusline
-    Title          = { bold = true },
-    Bold           = { bold = true },
-    Conceal        = { link = "Comment" },
-    Whitespace     = { fg = c.fg_whitespace },
-    SpecialKey     = { fg = c.fg_editor },
-    NonText        = { link = "Comment" },
-    Directory      = { link = "Comment" },                   -- "guifg=", "links to" etc when displaying :hi
-    Underlined     = { fg = c.fg_string, sp = c.fg_string, underline = true },
-    Substitute     = { bg = c.bg_search },                   -- flash letters
-    QuickFixLine   = { bg = c.bg_float, sp = c.fg_function, bold = true },
-    PreProc        = { fg = c.fg_editor },
-    Comment        = { fg = c.fg_comment },
-    Todo           = { fg = c.fg_todo },
-    Delimiter      = { fg = c.fg_punctuation },
-    Special        = { fg = c.fg_special },
-    MsgArea        = { link = "normal" },
-    SignColumn     = { bg = c.bg_normal },
-    CursorLineSign = { link = "CursorLineNr" },
-    ModeMsg        = { link = "MsgArea" },
-    MsgSeparator   = { link = "WinSeparator" },
-    Question       = { link = "SpecialKey" },
+    NormalNC                   = { link = "Normal" },
+    EndOfBuffer                = { link = "Normal" },
+    NormalFloat                = { bg = c.bg_float },
+    FloatTitle                 = { fg = c.fg_normal, bg = c.bg_float, bold = true },
+    FloatBorder                = { link = "NormalFloat" },
+    Pmenu                      = { bg = c.bg_float },
+    PmenuSel                   = { bg = c.bg_search },
+    PmenuSbar                  = { bg = c.bg_float_sbar },
+    PmenuThumb                 = { bg = c.fg_float_sbar },
+    MoreMsg                    = { fg = c.fg_normal, bg = c.bg_float, bold = true },
+    Visual                     = { bg = c.bg_visual },
+    Search                     = { bg = c.bg_search },
+    CurSearch                  = { bg = c.bg_cursearch },
+    IncSearch                  = { bg = c.bg_incsearch },
+    MatchParen                 = { bg = c.bg_incsearch },
+    Cursor                     = { fg = c.bg_normal, bg = c.fg_normal, reverse = false },
+    CursorLine                 = { bg = c.bg_cursorline },
+    CursorLineNr               = { fg = c.fg_cursorlinenr },
+    LineNr                     = { fg = c.fg_gutter },
+    LineNrAbove                = { link = "LineNr" },
+    LineNrBelow                = { link = "LineNr" },
+    WinSeparator               = { fg = c.fg_border },
+    StatusLine                 = { bg = c.bg_statusline, italic = true }, -- to avoid ^ in statusline
+    Title                      = { bold = true },
+    Bold                       = { bold = true },
+    Conceal                    = { link = "Comment" },
+    Whitespace                 = { fg = c.fg_whitespace },
+    SpecialKey                 = { fg = c.fg_editor },
+    NonText                    = { link = "Comment" },
+    Directory                  = { link = "Comment" }, -- "guifg=", "links to" etc when displaying :hi
+    Underlined                 = { fg = c.fg_string, sp = c.fg_string, underline = true },
+    Substitute                 = { bg = c.bg_search }, -- flash letters
+    QuickFixLine               = { bg = c.bg_float, sp = c.fg_function, bold = true },
+    PreProc                    = { fg = c.fg_editor },
+    Comment                    = { fg = c.fg_comment },
+    Todo                       = { fg = c.fg_todo },
+    Delimiter                  = { fg = c.fg_punctuation },
+    Special                    = { fg = c.fg_special },
+    MsgArea                    = { link = "normal" },
+    SignColumn                 = { bg = c.bg_normal },
+    CursorLineSign             = { link = "CursorLineNr" },
+    ModeMsg                    = { link = "MsgArea" },
+    MsgSeparator               = { link = "WinSeparator" },
+    Question                   = { link = "SpecialKey" },
 
-    TabLineSel     = { bold = true }, -- Currently selected tab, the bg defines the line that marks the active tab.
-    TabLine        = { bg = c.bg_light },
-    TabLineFill    = { bg = c.bg_light },
+    TabLineSel                 = { bold = true }, -- Currently selected tab, the bg defines the line that marks the active tab.
+    TabLine                    = { bg = c.bg_light },
+    TabLineFill                = { bg = c.bg_light },
 
     Type                       = { fg = c.fg_type },
     BuiltinType                = { fg = c.fg_builtintype },
@@ -264,7 +265,7 @@ local groups = {
     String                     = { fg = c.fg_string },
     Character                  = { link = "String" },
     Number                     = { fg = c.fg_number },
-    Constant                   = { fg = c.fg_constant },    -- TODO: Should this be unique?
+    Constant                   = { fg = c.fg_constant },                -- TODO: Should this be unique?
     GlobalVariable             = { fg = c.fg_constant, italic = true }, -- TODO: Should this be unique?
     Include                    = { fg = c.fg_keyword },
     Define                     = { fg = c.fg_keyword },
@@ -273,6 +274,7 @@ local groups = {
     PreCondit                  = { link = "Keyword" },
     Tag                        = { link = "Underlined" },
     Typedef                    = { link = "Type" },
+    Exception                  = { link = "Error" },
 
     cDefine                    = { fg = c.fg_keyword },
     cTypedef                   = { fg = c.fg_keyword },
@@ -305,7 +307,7 @@ local groups = {
     DiagnosticError            = { fg = c.diag.fg_error },
     DiagnosticWarn             = { fg = c.diag.fg_warning },
     DiagnosticInfo             = { fg = c.diag.fg_info },
-    DiagnosticHint             = { fg = c.diag.fg_hint },
+    DiagnosticHint             = { fg = c.diag.fg_hint, italic = true },
     DiagnosticOk               = { fg = c.diag.fg_ok },
     DiagnosticDeprecated       = { strikethrough = true, sp = c.diag.sp_deprecated }, -- TODO: this should be undercurled or something
     DiagnosticUnnecessary      = { fg = c.diag.fg_unnecessary },                      -- TODO: probably just link to unused
@@ -405,6 +407,12 @@ local lsp_groups = {
     -- ["@lsp.typemod.variable.callable"] = { link = "@function" },
     -- ["@lsp.typemod.variable.defaultLibrary"] = { link = "@variable.builtin" },
     -- ["@lsp.typemod.variable.injected"] = { link = "@variable" },
+
+}
+
+local treesitter_groups = {
+    -- This is redundant if we get semantic tokens from zls, but I turned it off for now.
+    ["@number.float.zig"] = { link = "Number" },
 }
 
 local gitsigns_groups = {
@@ -518,32 +526,31 @@ local gitsigns_groups = {
 
     -- GitSignsVirtLnum
     --         Used for line numbers in inline hunks previews.
-    -- Fallbacks: `GitSignsDeleteVirtLn`  
+    -- Fallbacks: `GitSignsDeleteVirtLn`
 
 
-    GitSignsAdd            = { fg = c.diff.add_gutter }, -- guifg=#597b60
-    GitSignsChange         = { fg = c.diff.change_gutter},                        -- guifg=#467c7b
-    GitSignsDelete         = { fg = c.diff.delete_gutter},                        -- guifg=#7f605c
-    GitSignsStagedAdd            = { link = "GitSignsAdd" }, -- guifg=#597b60
-    GitSignsStagedChange         = { link = "GitSignsChange" },                        -- guifg=#467c7b
-    GitSignsStagedDelete         = { link = "GitSignsDelete" },                        -- guifg=#7f605c
-    GitSignsStagedChangedelete   = { link = "GitSignsChange" },                        -- guifg=#467c7b
-    GitSignsStagedTopdelete      = { link = "GitSignsDelete" },                        -- guifg=#7f605c
-    GitSignsStagedAddNr          = { link = "GitSignsAdd" },                        -- guifg=#597b60
-    GitSignsStagedChangeNr       = { link = "GitSignsChange" },                        -- guifg=#467c7b
-    GitSignsStagedDeleteNr       = { link = "GitSignsDelete" },                        -- guifg=#7f605c
+    GitSignsAdd                  = { fg = c.diff.add_gutter },  -- guifg=#597b60
+    GitSignsChange               = { fg = c.diff.change_gutter }, -- guifg=#467c7b
+    GitSignsDelete               = { fg = c.diff.delete_gutter }, -- guifg=#7f605c
+    GitSignsStagedAdd            = { link = "GitSignsAdd" },    -- guifg=#597b60
+    GitSignsStagedChange         = { link = "GitSignsChange" }, -- guifg=#467c7b
+    GitSignsStagedDelete         = { link = "GitSignsDelete" }, -- guifg=#7f605c
+    GitSignsStagedChangedelete   = { link = "GitSignsChange" }, -- guifg=#467c7b
+    GitSignsStagedTopdelete      = { link = "GitSignsDelete" }, -- guifg=#7f605c
+    GitSignsStagedAddNr          = { link = "GitSignsAdd" },    -- guifg=#597b60
+    GitSignsStagedChangeNr       = { link = "GitSignsChange" }, -- guifg=#467c7b
+    GitSignsStagedDeleteNr       = { link = "GitSignsDelete" }, -- guifg=#7f605c
     GitSignsStagedChangedeleteNr = { link = "GitSignsChange" },
-    GitSignsStagedTopdeleteNr    = { link = "GitSignsDelete" },                        -- guifg=#7f605c
-    GitSignsStagedAddLn          = { link = "GitSignsAdd" },                        -- guifg=#5c6d43
-    GitSignsStagedChangeLn       = { link = "GitSignsChange" },                        -- guifg=#3e5079
-    GitSignsStagedChangedeleteLn = { link = "GitSignsChange" },                        -- guifg=#3e5079
+    GitSignsStagedTopdeleteNr    = { link = "GitSignsDelete" }, -- guifg=#7f605c
+    GitSignsStagedAddLn          = { link = "GitSignsAdd" },    -- guifg=#5c6d43
+    GitSignsStagedChangeLn       = { link = "GitSignsChange" }, -- guifg=#3e5079
+    GitSignsStagedChangedeleteLn = { link = "GitSignsChange" }, -- guifg=#3e5079
 }
 
 local todos = {
     SpellCap       = { fg = "#ff0100", bg = "#a6c43e" },
     SpellLocal     = { fg = "#ff0101", bg = "#a6c43f" },
     SpellRare      = { fg = "#ff0102", bg = "#a6c440" },
-    Exception      = { fg = "#ff0109", bg = "#a6c447" },
     SpecialComment = { fg = "#ff0111", bg = "#a6c44f" },
     Debug          = { fg = "#ff0112", bg = "#a6c450" },
     ColorColumn    = { fg = "#ff0113", bg = "#a6c451" },
@@ -576,6 +583,10 @@ for name, val in pairs(nvim_cmp_groups) do
 end
 
 for name, val in pairs(lsp_groups) do
+    vim.api.nvim_set_hl(0, name, val)
+end
+
+for name, val in pairs(treesitter_groups) do
     vim.api.nvim_set_hl(0, name, val)
 end
 
