@@ -1,11 +1,6 @@
---
---
---
---
 vim.g.mapleader = " "
 vim.keymap.set({ "n", "i", "v" }, "<C-h>", "<nop>")
 
--- autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup='Visual', timeout=300}
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = vim.api.nvim_create_augroup("highlight_on_yank", { clear = true }),
     callback = function(_)
@@ -13,10 +8,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
 })
 
--- vim.keymap.set("c", "<S-Enter>", function()
---     require("noice").redirect(vim.fn.getcmdline())
--- end, { noremap = true, silent = true })
-
+-- Configure terminal to send F15 on ctrl+enter
 vim.keymap.set("i", "<F15>",
     "<cmd>set formatoptions+=r<cr><cr><cmd>set formatoptions-=r<cr>",
     { noremap = true, silent = true })
@@ -37,13 +29,14 @@ vim.keymap.set("n", "O",
     "<cmd>set formatoptions-=o<cr>O",
     { noremap = true, silent = true })
 
--- Get the hell out of terminal mode
+-- Don't get stuck in terminal mode
 vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { noremap = true, silent = true })
 
 -- Clear search
 vim.keymap.set("i", "<esc>", "<cmd>noh<cr><esc>", { noremap = true, silent = true })
 vim.keymap.set("n", "<esc>", "<cmd>noh<cr><esc>", { noremap = true, silent = true })
 
+-- ijkl
 vim.keymap.set("", "i", "k", { noremap = true, silent = true })
 vim.keymap.set("", "j", "h", { noremap = true, silent = true })
 vim.keymap.set("", "k", "j", { noremap = true, silent = true })
@@ -115,18 +108,11 @@ vim.keymap.set("v", "x", '"+d', { noremap = true, silent = true })
 vim.keymap.set("n", "Q", "<nop>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-vim.keymap.set("n", "<leader>pss", [[<cmd>Obsess<cr>]], {})        -- [PLUGIN] vim-obsession
-vim.keymap.set("n", "<leader>psd", [[<cmd>Obsess!<cr>]], {})       -- [PLUGIN] vim-obsession
-vim.keymap.set("n", "<leader>pp", [[<cmd>so Session.vim<cr>]], {}) -- [PLUGIN] vim-obsession
+vim.keymap.set("n", "<leader>pss", [[<cmd>Obsess<cr>]], {})
+vim.keymap.set("n", "<leader>psd", [[<cmd>Obsess!<cr>]], {})
+vim.keymap.set("n", "<leader>pp", [[<cmd>so Session.vim<cr>]], {})
 
 vim.keymap.set("n", "<leader>gg", vim.cmd.Git);
-
--- [PLUGIN] persistence.nvim
--- restore the session for the current directory
--- vim.keymap.set("n", "<leader>pd", [[<cmd>lua require("persistence").load()<cr>]], {})
--- restore the last session
--- vim.keymap.set("n", "<leader>pp", [[<cmd>lua require("persistence").load({ last = true })<cr>]], {})
-
 
 -- Quick fix
 vim.keymap.set("n", "<leader>qq", "<cmd>crewind<CR>")

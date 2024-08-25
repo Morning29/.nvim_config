@@ -9,6 +9,7 @@ local function is_wsl()
     return string.match(line, "Microsoft") or string.match(line, "microsoft")
 end
 
+-- This doesn't work well, consider simply never using wsl again.
 if is_wsl then
     vim.cmd(
         [[ let g:clipboard = {
@@ -26,6 +27,9 @@ if is_wsl then
     )
 end
 
+-- Emulate standard status line with 'ruler' set (:h statusline)
+vim.opt.statusline = [[ %<%f %h%m%r%=%-14.(%l,%c%V%) %P ]]
+
 vim.opt.rnu = true
 vim.opt.nu = true
 
@@ -33,8 +37,6 @@ vim.opt.pumheight = 30
 
 vim.opt.conceallevel = 0
 vim.opt.cursorline = true
--- guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
--- vim.opt.guicursor = 'n-v-c-sm:block-blinkwait250-blinkon250-blinkoff250,i-ci-ve:ver25-blinkwait250-blinkon250-blinkoff250,r-cr-o:hor20-blinkwait250-blinkon250-blinkoff250'
 vim.opt.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'
 
 vim.opt.ignorecase = true
@@ -49,7 +51,6 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
--- vim.opt.undodir = -- ~\AppData\Local\nvim-data\undo\
 vim.opt.undofile = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true

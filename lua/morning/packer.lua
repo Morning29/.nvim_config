@@ -19,7 +19,7 @@ bootstrap_pckr()
 require('pckr').add {
     {
         'nvim-telescope/telescope.nvim',
-        tag = '0.1.6',
+        tag = '0.1.8',
         requires = { { 'nvim-lua/plenary.nvim' } }
     },
     {
@@ -29,9 +29,6 @@ require('pckr').add {
             ts_update()
         end,
     },
-    -- { 'folke/noice.nvim',
-    --     requires = { { "MunifTanjim/nui.nvim" } }
-    -- },
     { 'ziglang/zig.vim' },
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
