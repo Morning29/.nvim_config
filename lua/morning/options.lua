@@ -34,6 +34,7 @@ vim.opt.rnu = true
 vim.opt.nu = true
 
 vim.opt.pumheight = 30
+vim.opt.pumwidth = 60
 
 vim.opt.conceallevel = 0
 vim.opt.cursorline = true

@@ -9,6 +9,15 @@ cmp.setup({
         { name = 'nvim_lua' },
         { name = 'luasnip', option = { show_autosnippets = true } },
         { name = 'path' },
+        { name = 'spell',
+            option = {
+                keep_all_entries = false,
+                enable_in_context = function()
+                    return true
+                end,
+                preselect_correct_word = true,
+            },
+        },
     },
     ---
     experimental = {
@@ -22,6 +31,10 @@ cmp.setup({
         },
     },
     ---
+    performance = {
+        max_view_entries = 25,
+    },
+    ---
     formatting = {
         format = function(entry, item)
             if item.menu then
@@ -30,15 +43,19 @@ cmp.setup({
                 item.menu = ""
             end
             item.menu = (({
-                nvim_lsp = "[lsp] ",
+                nvim_lsp = "[lsp]",
                 nvim_lua = "[vim]",
                 path = "[pth]",
                 luasnip = "[snp]",
-            })[entry.source.name] or "[?]   "
-            ) .. item.menu
+                spell = "[spl]",
+            })[entry.source.name] or "[?]  ") -- .. item.menu
+            -- if string.len(item.menu) >= 50 then
+            --     item.menu = string.sub(item.menu, 1, 49) .. "…"
+            -- end
             return item
         end,
     },
+
     ---
     snippet = {
         expand = function(args)

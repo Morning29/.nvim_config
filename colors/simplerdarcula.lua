@@ -159,6 +159,7 @@ local c = {
     fg_constant     = fg_normal, -- "#a6744a", -- number (remap), boolean, matched brace (remap), constant
     fg_editor       = "#ff9e64", -- "#ffc739"
     fg_editor_dim   = "#915a39", -- "#ffc739"
+    fg_motion_label = "#dd0070",
 
     bg_light        = "#303030", -- "#b4b4b4",
     bg_dark         = "#242424", -- "#242424",
@@ -293,7 +294,10 @@ local groups = {
     Label                      = { link = "Keyword" },
     SpecialChar                = { link = "Keyword" }, -- String escape etc.
 
-    Spellbad                   = { undercurl = true, sp = c.sp_spellbad },
+    Spellbad                   = { undercurl = true, sp = c.diag.fg_error },
+    SpellCap                   = { undercurl = true, sp = c.diag.fg_warning },
+    SpellLocal                 = { undercurl = true, sp = c.diag.fg_hint },
+    SpellRare                  = { undercurl = true, sp = c.diag.fg_hint },
 
     DiffAdd                    = { fg = c.diff.add },
     DiffChange                 = { fg = c.diff.change },
@@ -359,6 +363,12 @@ local nvim_cmp_groups = {
     CmpItemKindKeyword    = { fg = c.fg_keyword },
     CmpItemKindProperty   = { link = 'CmpItemKindKeyword' },
     CmpItemKindUnit       = { link = 'CmpItemKindKeyword' },
+}
+
+local leap_groups = {
+    LeapBackdrop = { link = 'Comment' }, -- or some grey
+    LeapMatch = { fg = c.fg_number, bold = true, nocombine = true, },
+    LeapLabel = { fg = c.fg_motion_label, bold = true, italic = true, nocombine = false },
 }
 
 local lsp_groups = {
@@ -529,28 +539,25 @@ local gitsigns_groups = {
     -- Fallbacks: `GitSignsDeleteVirtLn`
 
 
-    GitSignsAdd                  = { fg = c.diff.add_gutter },  -- guifg=#597b60
+    GitSignsAdd                  = { fg = c.diff.add_gutter },    -- guifg=#597b60
     GitSignsChange               = { fg = c.diff.change_gutter }, -- guifg=#467c7b
     GitSignsDelete               = { fg = c.diff.delete_gutter }, -- guifg=#7f605c
-    GitSignsStagedAdd            = { link = "GitSignsAdd" },    -- guifg=#597b60
-    GitSignsStagedChange         = { link = "GitSignsChange" }, -- guifg=#467c7b
-    GitSignsStagedDelete         = { link = "GitSignsDelete" }, -- guifg=#7f605c
-    GitSignsStagedChangedelete   = { link = "GitSignsChange" }, -- guifg=#467c7b
-    GitSignsStagedTopdelete      = { link = "GitSignsDelete" }, -- guifg=#7f605c
-    GitSignsStagedAddNr          = { link = "GitSignsAdd" },    -- guifg=#597b60
-    GitSignsStagedChangeNr       = { link = "GitSignsChange" }, -- guifg=#467c7b
-    GitSignsStagedDeleteNr       = { link = "GitSignsDelete" }, -- guifg=#7f605c
+    GitSignsStagedAdd            = { link = "GitSignsAdd" },      -- guifg=#597b60
+    GitSignsStagedChange         = { link = "GitSignsChange" },   -- guifg=#467c7b
+    GitSignsStagedDelete         = { link = "GitSignsDelete" },   -- guifg=#7f605c
+    GitSignsStagedChangedelete   = { link = "GitSignsChange" },   -- guifg=#467c7b
+    GitSignsStagedTopdelete      = { link = "GitSignsDelete" },   -- guifg=#7f605c
+    GitSignsStagedAddNr          = { link = "GitSignsAdd" },      -- guifg=#597b60
+    GitSignsStagedChangeNr       = { link = "GitSignsChange" },   -- guifg=#467c7b
+    GitSignsStagedDeleteNr       = { link = "GitSignsDelete" },   -- guifg=#7f605c
     GitSignsStagedChangedeleteNr = { link = "GitSignsChange" },
-    GitSignsStagedTopdeleteNr    = { link = "GitSignsDelete" }, -- guifg=#7f605c
-    GitSignsStagedAddLn          = { link = "GitSignsAdd" },    -- guifg=#5c6d43
-    GitSignsStagedChangeLn       = { link = "GitSignsChange" }, -- guifg=#3e5079
-    GitSignsStagedChangedeleteLn = { link = "GitSignsChange" }, -- guifg=#3e5079
+    GitSignsStagedTopdeleteNr    = { link = "GitSignsDelete" },   -- guifg=#7f605c
+    GitSignsStagedAddLn          = { link = "GitSignsAdd" },      -- guifg=#5c6d43
+    GitSignsStagedChangeLn       = { link = "GitSignsChange" },   -- guifg=#3e5079
+    GitSignsStagedChangedeleteLn = { link = "GitSignsChange" },   -- guifg=#3e5079
 }
 
 local todos = {
-    SpellCap       = { fg = "#ff0100", bg = "#a6c43e" },
-    SpellLocal     = { fg = "#ff0101", bg = "#a6c43f" },
-    SpellRare      = { fg = "#ff0102", bg = "#a6c440" },
     SpecialComment = { fg = "#ff0111", bg = "#a6c44f" },
     Debug          = { fg = "#ff0112", bg = "#a6c450" },
     ColorColumn    = { fg = "#ff0113", bg = "#a6c451" },
@@ -574,6 +581,7 @@ local todos = {
 }
 -- stylua: ignore end
 
+-- TODO: condition plugin specific groups on whether or not the plugin is present.
 for name, val in pairs(groups) do
     vim.api.nvim_set_hl(0, name, val)
 end
@@ -583,6 +591,10 @@ for name, val in pairs(nvim_cmp_groups) do
 end
 
 for name, val in pairs(lsp_groups) do
+    vim.api.nvim_set_hl(0, name, val)
+end
+
+for name, val in pairs(leap_groups) do
     vim.api.nvim_set_hl(0, name, val)
 end
 
