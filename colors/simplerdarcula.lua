@@ -181,7 +181,7 @@ local c = {
         fg_error             = "#e26a75", -- TODO,
         fg_warning           = "#ffc739", -- TODO,
         fg_info              = "#d0d0d0", -- TODO,
-        fg_hint              = "#505050", -- TODO,
+        fg_hint              = "#405055", -- TODO,
         fg_ok                = "#b8db87", -- TODO,
         fg_unnecessary       = "#707070",
 

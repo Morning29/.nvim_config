@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { "lua_ls", "rust_analyzer", "gopls", "marksman" },
+    ensure_installed = { "lua_ls", "rust_analyzer", "gopls", "marksman", "pylsp" },
     handlers = {
         function(server_name)
             require('lspconfig')[server_name].setup({
@@ -46,6 +46,19 @@ require('mason-lspconfig').setup({
         end
     }
 })
+
+require'lspconfig'.pylsp.setup{
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+          ignore = {'W391'},
+          maxLineLength = 1000
+        }
+      }
+    }
+  }
+}
 
 require("lspconfig")["zls"].setup({ -- Server-specific settings. See `:help lspconfig-setup`
     capabilities = capabilities,
@@ -68,7 +81,7 @@ require("lspconfig")["zls"].setup({ -- Server-specific settings. See `:help lspc
             -- enable_snippets: Enables snippet completions when the client also supports them. (default: true)
             enable_snippets = true,
             -- enable_argument_placeholders: Whether to enable function argument placeholder completions. (default: true)
-            enable_argument_placeholders = true,
+            enable_argument_placeholders = false,
             -- semantic_tokens: Set level of semantic tokens. Partial only includes information that requires semantic analysis.. enum: [ none, partial, full ], (default: full)
             semantic_tokens = "none",
             -- zig_lib_path: Zig library path, e.g. `/path/to/zig/lib/zig`, used to analyze std library imports. (default: null)
