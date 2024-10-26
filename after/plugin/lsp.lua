@@ -4,11 +4,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local client = vim.lsp.get_client_by_id(args.data.client_id) or error("Invalid client on LspAttach")
 
         vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')                    -- Hover documentation'
-        vim.keymap.set('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<cr>')      -- Go to definition'
+        -- vim.keymap.set('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<cr>')      -- Go to definition'
         vim.keymap.set('n', '<leader>gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')     -- Go to declaration'
         vim.keymap.set('n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')  -- Go to implementation'
         vim.keymap.set('n', '<leader>gt', '<cmd>lua vim.lsp.buf.type_definition()<cr>') -- Go to type definition'
-        vim.keymap.set('n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<cr>')      -- Go to reference'
+        -- vim.keymap.set('n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<cr>')      -- Go to reference'
         vim.keymap.set('n', '<C-p>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')       -- Show function signature'
         vim.keymap.set('n', '<F6>', '<cmd>lua vim.lsp.buf.rename()<cr>')                -- Rename symbol'
         vim.keymap.set('n', '<leader>gl', '<cmd>lua vim.diagnostic.open_float()<cr>')   -- Show diagnostic'
@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { "lua_ls", "rust_analyzer", "gopls", "marksman", "pylsp" },
+    ensure_installed = { "lua_ls", "rust_analyzer", "gopls", "marksman", "pylsp", "powershell_es" },
     handlers = {
         function(server_name)
             require('lspconfig')[server_name].setup({
@@ -46,6 +46,11 @@ require('mason-lspconfig').setup({
         end
     }
 })
+
+require'lspconfig'.powershell_es.setup{
+  bundle_path = 'C:/tools/PowerShellEditorServices',
+  shell = 'powershell.exe',
+}
 
 require'lspconfig'.pylsp.setup{
   settings = {
