@@ -32,6 +32,7 @@ vim.opt.statusline = [[ %<%f %h%m%r%=%-14.(%l,%c%V%) %P ]]
 
 vim.opt.rnu = true
 vim.opt.nu = true
+vim.opt.mouse = 'n'
 
 vim.opt.pumheight = 30
 vim.opt.pumwidth = 60

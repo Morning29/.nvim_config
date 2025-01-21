@@ -371,6 +371,13 @@ local leap_groups = {
     LeapLabel = { fg = c.fg_motion_label, bold = true, italic = true, nocombine = false },
 }
 
+local vimtex_groups = {
+    texMathZoneX = {link = 'Number'},
+    texMathMatcher = {link = 'texMathZoneX'},
+    texMathOper = {link = 'texMathZoneX'},
+    texSuperscript = {link = 'texMathZoneX'},
+}
+
 local lsp_groups = {
     -- LSP Semantic Token Groups
     ["@lsp.type.boolean"]                  = { link = "BuiltinType" },
@@ -423,6 +430,7 @@ local lsp_groups = {
 local treesitter_groups = {
     -- This is redundant if we get semantic tokens from zls, but I turned it off for now.
     ["@number.float.zig"] = { link = "Number" },
+    ["@number.float.odin"] = { link = "Number" },
 }
 
 local gitsigns_groups = {
@@ -579,6 +587,7 @@ local todos = {
     PmenuExtra     = { fg = "#ff0132", bg = "#a6c470" },
     PmenuExtraSel  = { fg = "#ff0133", bg = "#a6c471" },
 }
+
 -- stylua: ignore end
 
 -- TODO: condition plugin specific groups on whether or not the plugin is present.
@@ -603,6 +612,10 @@ for name, val in pairs(treesitter_groups) do
 end
 
 for name, val in pairs(gitsigns_groups) do
+    vim.api.nvim_set_hl(0, name, val)
+end
+
+for name, val in pairs(vimtex_groups) do
     vim.api.nvim_set_hl(0, name, val)
 end
 

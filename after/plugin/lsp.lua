@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { "lua_ls", "rust_analyzer", "gopls", "marksman", "pylsp", "powershell_es" },
+    ensure_installed = { "lua_ls", "rust_analyzer", "gopls", "marksman", "pylsp", "powershell_es", "jsonls", "ols" },
     handlers = {
         function(server_name)
             require('lspconfig')[server_name].setup({
@@ -49,7 +49,7 @@ require('mason-lspconfig').setup({
 
 require'lspconfig'.powershell_es.setup{
   bundle_path = 'C:/tools/PowerShellEditorServices',
-  shell = 'powershell.exe',
+  shell = 'pwsh.exe',
 }
 
 require'lspconfig'.pylsp.setup{
