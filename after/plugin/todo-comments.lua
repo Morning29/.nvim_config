@@ -19,7 +19,7 @@ require("todo-comments").setup({
     },
     highlight = {
         -- pattern = [[.*<(KEYWORDS)\s*:]],
-        pattern = [[.*<((KEYWORDS)(:|\s+[0-9]))]],
+        pattern = [[.*<((KEYWORDS)(:|\s+[0-9]|\s*\(.*\)))]],
         multiline = true, -- enable multine todo comments
         before = "",      -- "fg" or "bg" or empty
         keyword = "fg",   -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
