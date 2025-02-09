@@ -25,7 +25,7 @@ ls.add_snippets(nil, {
     all = {
         ls.snippet({
             trig = "todo",
-            namr = "todo",
+            namr = "todo comment",
             -- dscr = "Todo with name/date."
         }, {
             ls.function_node(TODO, {}),
@@ -33,7 +33,7 @@ ls.add_snippets(nil, {
         }),
         ls.snippet({
             trig = "todo_resume",
-            namr = "resume",
+            namr = "resume comment",
             -- dscr = "Todo with name/date."
         }, {
             ls.function_node(RESUME, {}),
