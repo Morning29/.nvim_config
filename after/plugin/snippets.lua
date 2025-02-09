@@ -5,7 +5,7 @@ local function trim(s)
 end
 
 local todo = function()
-    local fmt = string.format("TODO (Uebel %s): ", trim(os.date("%e/%h/%Y")))
+    local fmt = string.format("TODO %s HSU: ", trim(os.date("%d/%m/%y")))
     local cmt = vim.bo.commentstring
     if not string.match(cmt, " ") then
         fmt = " " .. fmt
