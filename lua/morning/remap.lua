@@ -1,3 +1,4 @@
+
 vim.g.mapleader = " "
 vim.keymap.set({ "n", "i", "v" }, "<C-h>", "<nop>")
 
@@ -108,9 +109,9 @@ vim.keymap.set("v", "x", '"+d', { noremap = true, silent = true })
 vim.keymap.set("n", "Q", "<nop>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-vim.keymap.set("n", "<leader>pss", [[<cmd>Obsess<cr>]], {})
-vim.keymap.set("n", "<leader>psd", [[<cmd>Obsess!<cr>]], {})
-vim.keymap.set("n", "<leader>pp", [[<cmd>so Session.vim<cr>]], {})
+vim.keymap.set("n", "<leader>pss", [[<cmd>Obsess<cr>]], {})        
+vim.keymap.set("n", "<leader>psd", [[<cmd>Obsess!<cr>]], {})       
+vim.keymap.set("n", "<leader>pp", [[<cmd>so Session.vim<cr>]], {}) 
 
 vim.keymap.set("n", "<leader>gg", vim.cmd.Git);
 

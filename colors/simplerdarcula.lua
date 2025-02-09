@@ -431,6 +431,11 @@ local treesitter_groups = {
     -- This is redundant if we get semantic tokens from zls, but I turned it off for now.
     ["@number.float.zig"] = { link = "Number" },
     ["@number.float.odin"] = { link = "Number" },
+    ["@variable.builtin.odin"] = { link = "Keyword" },
+    ["@constant.builtin.odin"] = { link = "Keyword" },
+    ["@constant.odin"] = { link = "Constant" },
+    ["@attribute.odin"] = { link = "Keyword" },
+    ["@punctuation.special.odin"] = { link = "Keyword" },
 }
 
 local gitsigns_groups = {

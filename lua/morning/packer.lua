@@ -1,7 +1,7 @@
 local function bootstrap_pckr()
     local pckr_path = vim.fn.stdpath("data") .. "/pckr/pckr.nvim"
 
-    if not vim.loop.fs_stat(pckr_path) then
+    if not (vim.uv or vim.loop).fs_stat(pckr_path) then
         vim.fn.system({
             'git',
             'clone',
@@ -41,6 +41,10 @@ require('pckr').add {
             { 'hrsh7th/cmp-cmdline' },
             { 'f3fora/cmp-spell' },
         }
+    },
+    { 'ThePrimeagen/harpoon',
+        branch = 'harpoon2',
+        requires = { { 'nvim-lua/plenary.nvim' } }
     },
     { 'L3MON4D3/LuaSnip' },
     { 'rafamadriz/friendly-snippets' },

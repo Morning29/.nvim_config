@@ -82,10 +82,10 @@ cmp.setup({
         ["<CR>"] = cmp.mapping({
             i = function(fallback)
                 if cmp.visible() then
-                    if luasnip.expandable() then
-                        luasnip.expand()
-                    elseif cmp.get_active_entry() then
+                    if cmp.get_active_entry() then
                         cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                    elseif luasnip.expandable() then
+                        luasnip.expand()
                     else
                         fallback()
                     end
@@ -162,3 +162,6 @@ cmp.setup.cmdline(":", {
         end,
     },
 })
+
+
+
