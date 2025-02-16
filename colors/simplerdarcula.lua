@@ -148,9 +148,11 @@ local c = {
     fg_whitespace   = "#323232", -- "#464646", -- cursorlinenr
     fg_gutter       = "#474747", -- "#474747", -- line number
     fg_sidebar      = "#ff00ff", -- "#cecece",
-    fg_variable     = fg_normal, -- "#d0d0d0",
+    fg_variable     = "#e0e2ea", -- "#d0d0d0",
     fg_function     = "#996c46", -- "#996c46",
-    fg_field        = "#d09b6e", -- "#d09b6e", -- "d09b6e"
+    -- fg_field        = "#d09b6e", -- fields used to be orange?
+    fg_field        = fg_normal,
+    -- fg_field        = "none",
     fg_macro        = "#cccccc", -- "#fcd3af",
     fg_statement    = "#fcd3af", -- "#fcd3af", -- statement, identifier,
     fg_identifier   = "#cccccc", -- "#fcd3af", -- statement, identifier,
@@ -372,33 +374,38 @@ local leap_groups = {
 }
 
 local vimtex_groups = {
-    texMathZoneX = {link = 'Number'},
-    texMathMatcher = {link = 'texMathZoneX'},
-    texMathOper = {link = 'texMathZoneX'},
-    texSuperscript = {link = 'texMathZoneX'},
+    texMathZoneX = { link = 'Number' },
+    texMathMatcher = { link = 'texMathZoneX' },
+    texMathOper = { link = 'texMathZoneX' },
+    texSuperscript = { link = 'texMathZoneX' },
 }
 
 local lsp_groups = {
     -- LSP Semantic Token Groups
-    ["@lsp.type.boolean"]                  = { link = "BuiltinType" },
-    ["@lsp.type.builtinType"]              = { link = "BuiltinType" },
-    ["@lsp.type.enum"]                     = { link = "Type" },
-    ["@lsp.type.enumMember"]               = { link = "Constant" },
-    ["@lsp.type.escapeSequence"]           = { link = "Keyword" },
-    ["@lsp.type.formatSpecifier"]          = { link = "Keyword" },
-    ["@lsp.type.keyword"]                  = { link = "Keyword" },
-    ["@lsp.type.type"]                     = { link = "Type" },
-    ["@lsp.type.property"]                 = { link = "Property" },
-    ["@lsp.typemod.class.defaultLibrary"]  = { link = "BuiltinType" },
-    ["@lsp.typemod.enum.defaultLibrary"]   = { link = "BuiltinType" },
-    ["@lsp.typemod.struct.defaultLibrary"] = { link = "BuiltinType" },
-    ["@lsp.typemod.type.defaultLibrary"]   = { link = "BuiltinType" },
-    ["@lsp.type.string"]                   = { link = "String" },
-    ["@lsp.typemod.string.injected"]       = { link = "String" },
-    ["@lsp.typemod.variable.static"]       = { link = "Constant" },
-    ["@lsp.typemod.variable.globalScope"]  = { link = "GlobalVariable" },
-    ["@lsp.typemod.variable.fileScope"]    = { link = "GlobalVariable" },
-    ["@lsp.type.number"]                   = { link = "Number" },
+    ["@lsp.type.boolean"]                   = { link = "BuiltinType" },
+    ["@lsp.type.builtinType"]               = { link = "BuiltinType" },
+    ["@lsp.type.enum"]                      = { link = "Type" },
+    ["@lsp.type.enumMember"]                = { link = "Constant" },
+    ["@lsp.type.escapeSequence"]            = { link = "Keyword" },
+    ["@lsp.type.formatSpecifier"]           = { link = "Keyword" },
+    ["@lsp.type.keyword"]                   = { link = "Keyword" },
+    ["@lsp.type.type"]                      = { link = "Type" },
+    ["@lsp.type.property"]                  = { link = "Property" },
+    ["@lsp.typemod.class.defaultLibrary"]   = { link = "BuiltinType" },
+    ["@lsp.typemod.enum.defaultLibrary"]    = { link = "BuiltinType" },
+    ["@lsp.typemod.struct.defaultLibrary"]  = { link = "BuiltinType" },
+    ["@lsp.typemod.type.defaultLibrary"]    = { link = "BuiltinType" },
+    ["@lsp.type.string"]                    = { link = "String" },
+    ["@lsp.typemod.string.injected"]        = { link = "String" },
+    ["@lsp.typemod.variable.static"]        = { link = "Constant" },
+    ["@lsp.typemod.variable.globalScope"]   = { link = "GlobalVariable" },
+    ["@lsp.typemod.variable.fileScope"]     = { link = "GlobalVariable" },
+    ["@lsp.type.number"]                    = { link = "Number" },
+    -- ["@lsp.type.namespace.odin"]            = { link = "@variable" },
+    ["@lsp.type.enum.odin"]                 = { link = "Type" },
+    ["@lsp.type.enumMember.odin"]           = { link = "Constant" },
+    ["@lsp.typemod.variable.readonly.odin"] = { link = "Constant" },
+    -- ["@lsp.type.enumMember.odin"]          = { link = "Constant" },
     -- ["@lsp.type.comment"] = { link = "@comment" },
     -- ["@lsp.type.decorator"] = { link = "@attribute" },
     -- ["@lsp.type.deriveHelper"] = { link = "@attribute" },
@@ -429,13 +436,15 @@ local lsp_groups = {
 
 local treesitter_groups = {
     -- This is redundant if we get semantic tokens from zls, but I turned it off for now.
-    ["@number.float.zig"] = { link = "Number" },
-    ["@number.float.odin"] = { link = "Number" },
-    ["@variable.builtin.odin"] = { link = "Keyword" },
-    ["@constant.builtin.odin"] = { link = "Keyword" },
-    ["@constant.odin"] = { link = "Constant" },
-    ["@attribute.odin"] = { link = "Keyword" },
+    ["@number.float.zig"]         = { link = "Number" },
+    ["@number.float.odin"]        = { link = "Number" },
+    ["@variable.builtin.odin"]    = { link = "Keyword" },
+    ["@constant.builtin.odin"]    = { link = "Keyword" },
+    ["@constant.odin"]            = { link = "Constant" },
+    -- ["@constant.odin"] = { link = "Constant", priority = 150 },
+    ["@attribute.odin"]           = { link = "Keyword" },
     ["@punctuation.special.odin"] = { link = "Keyword" },
+    ["@variable.member.odin"]     = { link = "Field" },
 }
 
 local gitsigns_groups = {

@@ -16,6 +16,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "<F2>", '<cmd>lua vim.diagnostic.goto_next({severity = "ERROR"})<cr>')
         vim.keymap.set("n", "<F25>", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
         vim.keymap.set("n", "<F26>", '<cmd>lua vim.diagnostic.goto_prev({severity = "ERROR"})<cr>')
+        vim.keymap.set("n", "<F4>", '<cmd>lua vim.inlay_hint.enable(0, not lsp.inlay_hint.is_enabled())<cr>')
 
         -- gofmt uses tabs, don't care!
         local format_cmd = '<cmd>lua vim.lsp.buf.format({async = true})<cr>'
@@ -34,39 +35,74 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+vim.api.nvim_create_autocmd('LspTokenUpdate', {
+    callback = function(args)
+        local token = args.data.token
+        if token.type == 'function' then
+            vim.lsp.semantic_tokens.highlight_token(
+                token, args.buf, args.data.client_id, 'Function', { priority = 150 }
+            )
+        end
+    end,
+})
+
+local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('mason').setup({})
 require('mason-lspconfig').setup({
     ensure_installed = { "lua_ls", "rust_analyzer", "gopls", "marksman", "pylsp", "powershell_es", "jsonls", "ols", "glsl_analyzer" },
-    handlers = {
-        function(server_name)
-            require('lspconfig')[server_name].setup({
-                capabilities = capabilities
-            })
-        end
-    }
+    -- handlers = nil,
+    handlers = { function(server_name)
+        require('lspconfig')[server_name].setup({
+            capabilities = cmp_capabilities
+        })
+    end
+    },
 })
 
-require'lspconfig'.powershell_es.setup{
-  bundle_path = 'C:/tools/PowerShellEditorServices',
-  shell = 'pwsh.exe',
+require 'lspconfig'.powershell_es.setup {
+    bundle_path = 'C:/tools/PowerShellEditorServices',
+    shell = 'pwsh.exe',
 }
 
-require'lspconfig'.pylsp.setup{
-  settings = {
-    pylsp = {
-      plugins = {
-        pycodestyle = {
-          ignore = {'W391'},
-          maxLineLength = 1000
+require 'lspconfig'.pylsp.setup {
+    settings = {
+        pylsp = {
+            plugins = {
+                pycodestyle = {
+                    ignore = { 'W391' },
+                    maxLineLength = 1000
+                }
+            }
         }
-      }
     }
-  }
+}
+
+require("lspconfig").ols.setup { -- Server-specific settings. See `:help lspconfig-setup`
+    capabilities = cmp_capabilities,
+    init_options = {
+        enable_hover = true,
+        enable_snippets = true,
+        enable_procedure_snippet = false,
+        enable_semantic_tokens = true,
+        enable_references = true,
+        enable_document_symbols = true,
+        checker_args = "-vet -vet-style -vet-cast", -- -vet-casts -vet-using-param",
+        verbose = true,
+        enable_rename = true,
+        enable_inlay_hints = true,
+        -- enable_checker_only_saved = false,
+        -- enable_fake_methods = false,
+        collections = {
+            { name = "builtin",    path = 'C:/tools/Odin/base/builtin' },
+            { name = "intrinsics", path = 'C:/tools/Odin/base/intrinsics' },
+            { name = "runtime",    path = 'C:/tools/Odin/base/runtime' },
+        },
+    },
 }
 
 require("lspconfig")["zls"].setup({ -- Server-specific settings. See `:help lspconfig-setup`
-    capabilities = capabilities,
+    capabilities = cmp_capabilities,
     -- Perhaps handle link formatting in hover doc:
     -- handlers = {
     --     ["textDocument/hover"] = function (_, result, ctx, config)

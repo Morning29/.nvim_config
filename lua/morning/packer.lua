@@ -30,7 +30,10 @@ require('pckr').add {
         end,
     },
     { 'ziglang/zig.vim' },
-    { 'neovim/nvim-lspconfig' },
+    {
+        'neovim/nvim-lspconfig',
+        inlay_hints = { enabled = true },
+    },
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
     { 'hrsh7th/nvim-cmp',
