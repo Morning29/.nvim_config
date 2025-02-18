@@ -42,12 +42,13 @@ require('pckr').add {
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'hrsh7th/cmp-nvim-lua' },
             { 'hrsh7th/cmp-cmdline' },
+            { 'hrsh7th/cmp-path' },
             { 'f3fora/cmp-spell' },
-        }
+        },
     },
     { 'ThePrimeagen/harpoon',
         branch = 'harpoon2',
-        requires = { { 'nvim-lua/plenary.nvim' } }
+        requires = { { 'nvim-lua/plenary.nvim' }, },
     },
     { 'L3MON4D3/LuaSnip' },
     { 'rafamadriz/friendly-snippets' },

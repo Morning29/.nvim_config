@@ -5,7 +5,7 @@ require("todo-comments").setup({
         error = { "DiagnosticError", "ErrorMsg", "#ff00ff" },
         warning = { "DiagnosticWarn", "WarningMsg", "#ff00ff" },
         info = { "DiagnosticInfo", "#ff00ff" },
-        hint = { "DiagnosticHint", "#ff00ff" },
+        hint = { "#749cae", "#ff00ff" },
         default = { "Identifier", "#ff00ff" },
     },
     keywords = {

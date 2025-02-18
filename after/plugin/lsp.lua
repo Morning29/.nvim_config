@@ -77,7 +77,6 @@ require 'lspconfig'.pylsp.setup {
         }
     }
 }
-
 require("lspconfig").ols.setup { -- Server-specific settings. See `:help lspconfig-setup`
     capabilities = cmp_capabilities,
     init_options = {
@@ -87,7 +86,7 @@ require("lspconfig").ols.setup { -- Server-specific settings. See `:help lspconf
         enable_semantic_tokens = true,
         enable_references = true,
         enable_document_symbols = true,
-        checker_args = "-vet -vet-style -vet-cast", -- -vet-casts -vet-using-param",
+        checker_args = "-vet-shadowing -vet-style -vet-cast", -- -vet-casts -vet-using-param",
         verbose = true,
         enable_rename = true,
         enable_inlay_hints = true,

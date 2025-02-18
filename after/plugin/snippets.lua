@@ -21,6 +21,10 @@ local RESUME = function()
     return todo_keyword("RESUME")
 end
 
+local NOTE = function()
+    return todo_keyword("NOTE")
+end
+
 ls.add_snippets(nil, {
     all = {
         ls.snippet({
@@ -38,6 +42,14 @@ ls.add_snippets(nil, {
         }, {
             ls.function_node(RESUME, {}),
             ls.insert_node(1, ""),
-        })
+        }),
+        ls.snippet({
+            trig = "todo_note",
+            namr = "note comment",
+            -- dscr = "Todo with name/date."
+        }, {
+            ls.function_node(NOTE, {}),
+            ls.insert_node(1, ""),
+        }),
     }
 })

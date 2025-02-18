@@ -125,7 +125,8 @@
 --              map documented above.
 --
 
-local fg_normal = "#b0b0b0"
+-- local fg_normal = "#b0b0b0" -- e0e2ea
+local fg_normal = "#e0e2ea"
 -- stylua: ignore start
 local c = {
     NONE            = "none",
@@ -133,10 +134,11 @@ local c = {
     fg_normal       = fg_normal, -- "#cccccc",
     fg_normal_sbar  = "#707070", -- "#cccccc",
     fg_float_sbar   = "#707070", -- "#cccccc",
-    fg_punctuation  = fg_normal, -- "#aaaaaa",
+    -- fg_punctuation  = fg_normal, -- "#aaaaaa",
+    fg_punctuation  = "#b0b0b0", -- "#aaaaaa",
     fg_string       = "#91b3d8", -- "#91b3d8",
     fg_number       = "#FFFFFF", -- "#ffffff",
-    fg_type         = fg_normal, -- "#cbcbcb",
+    fg_type         = "#b0b0b0", -- "#cbcbcb",
     fg_builtintype  = "#fcd3af", -- "#cbcbcb",
     fg_special      = fg_normal, -- "#cbcbcc",
     fg_operator     = fg_normal, -- "#fcd3b0",
@@ -149,7 +151,8 @@ local c = {
     fg_gutter       = "#474747", -- "#474747", -- line number
     fg_sidebar      = "#ff00ff", -- "#cecece",
     fg_variable     = "#e0e2ea", -- "#d0d0d0",
-    fg_function     = "#996c46", -- "#996c46",
+    -- fg_function     = "#996c46", -- "#996c46",
+    fg_function     = "#d09b6e", -- "#996c46",
     -- fg_field        = "#d09b6e", -- fields used to be orange?
     fg_field        = fg_normal,
     -- fg_field        = "none",
@@ -178,25 +181,24 @@ local c = {
     bg_sidebar      = "#242424", -- "#242424",
     bg_statusline   = "#303030", -- "#242424",
 
-    -- NOTE: asdf
-    diag            = {                   -- TODO: colors and styles
-        fg_error             = "#e26a75", -- TODO,
-        fg_warning           = "#ffc739", -- TODO,
-        fg_info              = "#d0d0d0", -- TODO,
-        fg_hint              = "#405055", -- TODO,
-        fg_ok                = "#b8db87", -- TODO,
+    diag            = {
+        fg_error             = "#e26a75",
+        fg_warning           = "#ffc739",
+        fg_info              = "#d0d0d0",
+        fg_hint              = "#405055",
+        fg_ok                = "#b8db87",
         fg_unnecessary       = "#707070",
 
-        fg_vtext_error       = "#893038", -- TODO,
-        fg_vtext_warning     = "#463B12", -- TODO,
-        fg_vtext_info        = "#404040", -- TODO,
-        fg_vtext_hint        = "#404040", -- TODO,
-        fg_vtext_ok          = "#455430", -- TODO,
+        fg_vtext_error       = "#893038",
+        fg_vtext_warning     = "#463B12",
+        fg_vtext_info        = "#404040",
+        fg_vtext_hint        = "#404040",
+        fg_vtext_ok          = "#455430",
 
         fg_vtext_unnecessary = "#707070",
         sp_deprecated        = "#ffc739",
     },
-    diff            = { -- TODO: colors and stoyles
+    diff            = {
         add           = "#b8db87",
         change        = "#7ca1f2",
         delete        = "#e26a75",
@@ -268,8 +270,9 @@ local groups = {
     String                     = { fg = c.fg_string },
     Character                  = { link = "String" },
     Number                     = { fg = c.fg_number },
-    Constant                   = { fg = c.fg_constant },                -- TODO: Should this be unique?
+    Variable                   = { fg = c.fg_variable },
     GlobalVariable             = { fg = c.fg_constant, italic = true }, -- TODO: Should this be unique?
+    Constant                   = { fg = c.fg_constant },
     Include                    = { fg = c.fg_keyword },
     Define                     = { fg = c.fg_keyword },
     StorageClass               = { fg = c.fg_normal },
@@ -293,7 +296,7 @@ local groups = {
     Operator                   = { fg = c.fg_operator },
     Keyword                    = { fg = c.fg_keyword },
     Repeat                     = { link = "Keyword" }, -- Loops etc.
-    Label                      = { link = "Keyword" },
+    Label                      = { fg = c.fg_number, italic = true }, -- underdashed, underdotted, standout, 
     SpecialChar                = { link = "Keyword" }, -- String escape etc.
 
     Spellbad                   = { undercurl = true, sp = c.diag.fg_error },
@@ -401,7 +404,7 @@ local lsp_groups = {
     ["@lsp.typemod.variable.globalScope"]   = { link = "GlobalVariable" },
     ["@lsp.typemod.variable.fileScope"]     = { link = "GlobalVariable" },
     ["@lsp.type.number"]                    = { link = "Number" },
-    -- ["@lsp.type.namespace.odin"]            = { link = "@variable" },
+    ["@lsp.type.namespace.odin"]            = { link = "Variable" },
     ["@lsp.type.enum.odin"]                 = { link = "Type" },
     ["@lsp.type.enumMember.odin"]           = { link = "Constant" },
     ["@lsp.typemod.variable.readonly.odin"] = { link = "Constant" },
@@ -441,6 +444,7 @@ local treesitter_groups = {
     ["@variable.builtin.odin"]    = { link = "Keyword" },
     ["@constant.builtin.odin"]    = { link = "Keyword" },
     ["@constant.odin"]            = { link = "Constant" },
+    -- ["@label.odin"]               = { link = "" },
     -- ["@constant.odin"] = { link = "Constant", priority = 150 },
     ["@attribute.odin"]           = { link = "Keyword" },
     ["@punctuation.special.odin"] = { link = "Keyword" },

@@ -7,9 +7,10 @@ cmp.setup({
     sources = {
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
-        { name = 'luasnip', option = { show_autosnippets = true } },
+        { name = 'luasnip',   option = { show_autosnippets = true } },
         { name = 'path' },
-        { name = 'spell',
+        {
+            name = 'spell',
             option = {
                 keep_all_entries = false,
                 enable_in_context = function()
@@ -150,18 +151,14 @@ cmp.setup.cmdline(":", {
             s = cmp.mapping.confirm({ select = true }),
         }),
     },
-    sources = cmp.config.sources({
-        { name = "path" },
-    }, {
-        { name = "cmdline" },
-    }),
+    sources = cmp.config.sources(
+        { { name = "path" }, },
+        { { name = "cmdline" }, }
+    ),
     formatting = {
         format = function(entry, item)
-            item.menu = ({ cmdline = "[cmd]", path = "[path]" })[entry.source.name] or ""
+            item.menu = ({ cmdline = "[cmd]", path = "[pth]" })[entry.source.name] or "[?]"
             return item
         end,
     },
 })
-
-
-
