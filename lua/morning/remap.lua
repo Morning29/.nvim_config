@@ -1,4 +1,3 @@
-
 vim.g.mapleader = " "
 vim.keymap.set({ "n", "i", "v" }, "<C-h>", "<nop>")
 
@@ -10,25 +9,25 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Configure terminal to send F15 on ctrl+enter
-vim.keymap.set("i", "<F15>",
-    "<cmd>set formatoptions+=r<cr><cr><cmd>set formatoptions-=r<cr>",
-    { noremap = true, silent = true })
-vim.keymap.set("i", "<CR>",
-    "<cmd>set formatoptions-=r<cr><cr>",
-    { noremap = true, silent = true })
-vim.keymap.set("n", "<C-o>",
-    "<cmd>set formatoptions+=o<cr>o<cmd>set formatoptions-=o<cr>",
-    { noremap = true, silent = true })
-vim.keymap.set("n", "o",
-    "<cmd>set formatoptions-=o<cr>o",
-    { noremap = true, silent = true })
+-- vim.keymap.set("i", "<F15>",
+--     "<cmd>set formatoptions+=r<cr><cr><cmd>set formatoptions-=r<cr>",
+--     { noremap = true, silent = true })
+-- vim.keymap.set("i", "<CR>",
+--     "<cmd>set formatoptions-=r<cr><cr>",
+--     { noremap = true, silent = true })
+-- vim.keymap.set("n", "<C-o>",
+--     "<cmd>set formatoptions+=o<cr>o<cmd>set formatoptions-=o<cr>",
+--     { noremap = true, silent = true })
+-- vim.keymap.set("n", "o",
+--     "<cmd>set formatoptions-=o<cr>o",
+--     { noremap = true, silent = true })
 -- This doesn't work but I won't care until I find myself needing it.
 -- vim.keymap.set("n", "<C-S-O>",
 --     "<cmd>set formatoptions+=o<cr>O<cmd>set formatoptions-=o<cr>",
 -- { noremap = true, silent = true })
-vim.keymap.set("n", "O",
-    "<cmd>set formatoptions-=o<cr>O",
-    { noremap = true, silent = true })
+-- vim.keymap.set("n", "O",
+--     "<cmd>set formatoptions-=o<cr>O",
+--     { noremap = true, silent = true })
 
 -- Don't get stuck in terminal mode
 vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { noremap = true, silent = true })
@@ -42,6 +41,9 @@ vim.keymap.set("", "i", "k", { noremap = true, silent = true })
 vim.keymap.set("", "j", "h", { noremap = true, silent = true })
 vim.keymap.set("", "k", "j", { noremap = true, silent = true })
 vim.keymap.set("", "h", "i", { noremap = true, silent = true })
+
+-- Use <C-t> for jump list instead of tag stack.
+vim.keymap.set("n", "<C-n>", "<C-i>", { noremap = true, silent = true })
 
 -- https://github.com/tpope/vim-fugitive/issues/1425#issuecomment-995106715
 -- tpope plugins use 'h' in place of 'i'
@@ -109,19 +111,21 @@ vim.keymap.set("v", "x", '"+d', { noremap = true, silent = true })
 vim.keymap.set("n", "Q", "<nop>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-vim.keymap.set("n", "<leader>pss", [[<cmd>Obsess<cr>]], {})        
-vim.keymap.set("n", "<leader>psd", [[<cmd>Obsess!<cr>]], {})       
-vim.keymap.set("n", "<leader>pp", [[<cmd>so Session.vim<cr>]], {}) 
+vim.keymap.set("n", "<leader>pss", [[<cmd>Obsess<cr>]], {})
+vim.keymap.set("n", "<leader>psd", [[<cmd>Obsess!<cr>]], {})
+vim.keymap.set("n", "<leader>pp", [[<cmd>so Session.vim<cr>]], {})
 
 vim.keymap.set("n", "<leader>gg", vim.cmd.Git);
 
 -- Quick fix
-vim.keymap.set("n", "<leader>qq", "<cmd>crewind<CR>")
-vim.keymap.set("n", "<leader>qlq", "<cmd>lrewind<CR>")
-vim.keymap.set("n", "<leader>qn", "<cmd>cnext<CR>")
-vim.keymap.set("n", "<leader>qN", "<cmd>cprev<CR>")
-vim.keymap.set("n", "<leader>qln", "<cmd>next<CR>")
-vim.keymap.set("n", "<leader>qlN", "<cmd>lprev<CR>")
+vim.keymap.set("n", "<F3>", "<cmd>cwindow<cr><cmd>crewind<cr>")
+vim.keymap.set("n", "<F4>", "<cmd>cwindow<cr><cmd>cnext<cr>")
+-- vim.keymap.set("n", "<leader>qq", "<cmd>crewind<CR>")
+-- vim.keymap.set("n", "<leader>qn", "<cmd>cnext<CR>")
+-- vim.keymap.set("n", "<leader>qlq", "<cmd>lrewind<CR>")
+-- vim.keymap.set("n", "<leader>qN", "<cmd>cprev<CR>")
+-- vim.keymap.set("n", "<leader>qln", "<cmd>next<CR>")
+-- vim.keymap.set("n", "<leader>qlN", "<cmd>lprev<CR>")
 
 -- Search/replace word under cursor.
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left><Space><Backspace>]])

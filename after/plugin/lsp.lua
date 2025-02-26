@@ -16,7 +16,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "<F2>", '<cmd>lua vim.diagnostic.goto_next({severity = "ERROR"})<cr>')
         vim.keymap.set("n", "<F25>", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
         vim.keymap.set("n", "<F26>", '<cmd>lua vim.diagnostic.goto_prev({severity = "ERROR"})<cr>')
-        vim.keymap.set("n", "<F4>", '<cmd>lua vim.inlay_hint.enable(0, not lsp.inlay_hint.is_enabled())<cr>')
 
         -- gofmt uses tabs, don't care!
         local format_cmd = '<cmd>lua vim.lsp.buf.format({async = true})<cr>'
@@ -31,6 +30,55 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.keymap.set('x', '<A-CR>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>') -- Execute code action
         else
             vim.keymap.set('x', '<A-CR>', '<cmd>lua vim.lsp.buf.code_action()<cr>')       -- Execute code action
+        end
+    end,
+})
+
+vim.api.nvim_create_user_command("Odin", function(cmd)
+    local cmd = vim.list_extend(vim.list_extend({ 'odin' }, cmd.fargs), { '-terse-errors' })
+
+    local command_res = vim.system(cmd):wait()
+
+    if command_res.code == 0 and command_res.stdout ~= nil then
+        print(command_res.stdout)
+        vim.fn.setqflist({})
+        vim.cmd([[ cwindow ]])
+        return
+    end
+
+    if command_res.stderr == nil then
+        vim.fn.setqflist({})
+        vim.cmd([[ cwindow ]])
+        return
+    end
+
+    local err_lines = vim.split(command_res.stderr, '\n', { plain = true, trimempty = true })
+
+    vim.fn.setqflist({}, 'r', {
+        efm = [[%f(%l:%c)\ %m]],
+        lines = err_lines,
+    })
+end, { nargs = '+' })
+
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+    group = vim.api.nvim_create_augroup("odin check", { clear = true }),
+    callback = function(opts)
+        if vim.bo[opts.buf].filetype == "odin" then
+            -- HACK 25/02/25 HSU: Won't work in odin projects without /src.
+            vim.cmd([[ Odin check src -debug ]])
+        end
+    end,
+})
+
+
+vim.api.nvim_create_autocmd('FileType', {
+    group = vim.api.nvim_create_augroup("odin make", { clear = true }),
+    callback = function(opts)
+        local buf_opts = vim.bo[opts.buf]
+        if buf_opts.filetype == "odin" then
+            buf_opts.makeprg = "odin build src -debug"
+            buf_opts.errorformat = [[%f(%l:%c)\ %m]]
         end
     end,
 })
@@ -50,7 +98,7 @@ vim.api.nvim_create_autocmd('LspTokenUpdate', {
 local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { "lua_ls", "rust_analyzer", "gopls", "marksman", "pylsp", "powershell_es", "jsonls", "ols", "glsl_analyzer" },
+    ensure_installed = { "lua_ls", "rust_analyzer", "gopls", "marksman", "pylsp", "powershell_es", "jsonls", "glsl_analyzer" },
     -- handlers = nil,
     handlers = { function(server_name)
         require('lspconfig')[server_name].setup({
@@ -77,7 +125,7 @@ require 'lspconfig'.pylsp.setup {
         }
     }
 }
-require("lspconfig").ols.setup { -- Server-specific settings. See `:help lspconfig-setup`
+require("lspconfig")["ols"].setup { -- Server-specific settings. See `:help lspconfig-setup`
     capabilities = cmp_capabilities,
     init_options = {
         enable_hover = true,
