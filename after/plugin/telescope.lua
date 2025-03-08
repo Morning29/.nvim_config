@@ -16,5 +16,26 @@ vim.keymap.set('n', '<leader>gr', builtin.lsp_references, {})
 vim.keymap.set('n', '<leader>gd', builtin.lsp_definitions, {})
 vim.keymap.set('n', '<leader>gt', builtin.lsp_type_definitions, {})
 
+require('telescope').setup({
+    defaults = {
+        layout_config = {
+            vertical = { width = 0.5 },
+            horizontal = { width = 0.9 },
+            -- other layout configuration here
+        },
+        -- other defaults configuration here
+    },
+    -- other configuration values here
+})
 
-
+-- vim.api.nvim_create_autocmd("User", {
+--   pattern = "TelescopePreviewerLoaded",
+--   callback = function(args)
+--     if args.data.filetype ~= "help" then
+--       vim.wo.number = true
+--     elseif args.data.bufname:match("*.csv") then
+--       vim.wo.wrap = false
+--     end
+--   end,
+-- })
+--

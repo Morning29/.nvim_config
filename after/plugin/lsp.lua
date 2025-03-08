@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.api.nvim_create_user_command("Odin", function(cmd)
-    local cmd = vim.list_extend(vim.list_extend({ 'odin' }, cmd.fargs), { '-terse-errors' })
+    cmd = vim.list_extend(vim.list_extend({ 'odin' }, cmd.fargs), { '-terse-errors' })
 
     local command_res = vim.system(cmd):wait()
 
@@ -125,7 +125,8 @@ require 'lspconfig'.pylsp.setup {
         }
     }
 }
-require("lspconfig")["ols"].setup { -- Server-specific settings. See `:help lspconfig-setup`
+
+require("lspconfig").ols.setup { -- Server-specific settings. See `:help lspconfig-setup`
     capabilities = cmp_capabilities,
     init_options = {
         enable_hover = true,
@@ -134,7 +135,7 @@ require("lspconfig")["ols"].setup { -- Server-specific settings. See `:help lspc
         enable_semantic_tokens = true,
         enable_references = true,
         enable_document_symbols = true,
-        checker_args = "-debug -vet-shadowing -vet-style -vet-cast", -- -vet-casts -vet-using-param",
+        checker_args = "-debug -vet-shadowing -vet-style -vet-cast", -- -vet-unused", -- -vet-casts -vet-using-param",
         verbose = true,
         enable_rename = true,
         enable_inlay_hints = true,
@@ -148,7 +149,7 @@ require("lspconfig")["ols"].setup { -- Server-specific settings. See `:help lspc
     },
 }
 
-require("lspconfig")["zls"].setup({ -- Server-specific settings. See `:help lspconfig-setup`
+require("lspconfig").zls.setup({ -- Server-specific settings. See `:help lspconfig-setup`
     capabilities = cmp_capabilities,
     -- Perhaps handle link formatting in hover doc:
     -- handlers = {
