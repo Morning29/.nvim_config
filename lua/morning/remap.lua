@@ -9,25 +9,25 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Configure terminal to send F15 on ctrl+enter
--- vim.keymap.set("i", "<F15>",
---     "<cmd>set formatoptions+=r<cr><cr><cmd>set formatoptions-=r<cr>",
---     { noremap = true, silent = true })
--- vim.keymap.set("i", "<CR>",
---     "<cmd>set formatoptions-=r<cr><cr>",
---     { noremap = true, silent = true })
--- vim.keymap.set("n", "<C-o>",
---     "<cmd>set formatoptions+=o<cr>o<cmd>set formatoptions-=o<cr>",
---     { noremap = true, silent = true })
--- vim.keymap.set("n", "o",
---     "<cmd>set formatoptions-=o<cr>o",
---     { noremap = true, silent = true })
+vim.keymap.set("i", "<F15>",
+    "<cmd>set formatoptions+=r<cr><cr><cmd>set formatoptions-=r<cr>",
+    { noremap = true, silent = true })
+vim.keymap.set("i", "<CR>",
+    "<cmd>set formatoptions-=r<cr><cr>",
+    { noremap = true, silent = true })
+vim.keymap.set("n", "<C-o>",
+    "<cmd>set formatoptions+=o<cr>o<cmd>set formatoptions-=o<cr>",
+    { noremap = true, silent = true })
+vim.keymap.set("n", "o",
+    "<cmd>set formatoptions-=o<cr>o",
+    { noremap = true, silent = true })
 -- This doesn't work but I won't care until I find myself needing it.
--- vim.keymap.set("n", "<C-S-O>",
---     "<cmd>set formatoptions+=o<cr>O<cmd>set formatoptions-=o<cr>",
--- { noremap = true, silent = true })
--- vim.keymap.set("n", "O",
---     "<cmd>set formatoptions-=o<cr>O",
---     { noremap = true, silent = true })
+vim.keymap.set("n", "<C-S-O>",
+    "<cmd>set formatoptions+=o<cr>O<cmd>set formatoptions-=o<cr>",
+    { noremap = true, silent = true })
+vim.keymap.set("n", "O",
+    "<cmd>set formatoptions-=o<cr>O",
+    { noremap = true, silent = true })
 
 -- Don't get stuck in terminal mode
 vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { noremap = true, silent = true })
@@ -114,6 +114,10 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>pss", [[<cmd>Obsess<cr>]], {})
 vim.keymap.set("n", "<leader>psd", [[<cmd>Obsess!<cr>]], {})
 vim.keymap.set("n", "<leader>pp", [[<cmd>so Session.vim<cr>]], {})
+
+vim.keymap.set("n", "<leader>0", "<C-w>=", {})
+-- vim.keymap.set("n", "<leader>+", "<C-w>10>", {})
+-- vim.keymap.set("n", "<leader>=", "<C-w>10<", {})
 
 vim.keymap.set("n", "<leader>gg", vim.cmd.Git);
 

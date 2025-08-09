@@ -54,7 +54,7 @@ vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undofile = true
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 4
@@ -65,7 +65,7 @@ vim.opt.updatetime = 500
 vim.opt.list = true
 
 vim.opt.foldenable = false
-vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
+vim.opt.shortmess:append({ W = true, I = true, c = true, C = true, a = true, t = true })
 vim.opt.path:append(",**/include") -- TODO: perhaps only do this when it makes sense.
 vim.cmd('set isfname-=#')
 -- formatoptions=jcroql

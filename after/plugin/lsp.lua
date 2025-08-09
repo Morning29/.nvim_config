@@ -66,7 +66,9 @@ vim.api.nvim_create_autocmd('BufWritePost', {
     callback = function(opts)
         if vim.bo[opts.buf].filetype == "odin" then
             -- HACK 25/02/25 HSU: Won't work in odin projects without /src.
-            vim.cmd([[ Odin check src -debug ]])
+            vim.cmd([[ silent! Odin check src -debug ]])
+            -- vim.cmd([[ Odin check verifier -debug ]])
+            -- vim.cmd([[ Odin check tests -debug -no-entry-point ]])
         end
     end,
 })
@@ -98,7 +100,7 @@ vim.api.nvim_create_autocmd('LspTokenUpdate', {
 local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { "lua_ls", "rust_analyzer", "gopls", "marksman", "pylsp", "powershell_es", "jsonls", "glsl_analyzer" },
+    ensure_installed = { "lua_ls", "rust_analyzer", "gopls", "marksman", "pylsp", "powershell_es", "jsonls", "glsl_analyzer", "millet" },
     -- handlers = nil,
     handlers = { function(server_name)
         require('lspconfig')[server_name].setup({

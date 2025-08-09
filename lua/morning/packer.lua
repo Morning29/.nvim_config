@@ -19,7 +19,7 @@ bootstrap_pckr()
 require('pckr').add {
     {
         'nvim-telescope/telescope.nvim',
-        tag = '0.1.8',
+        branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     },
     {
@@ -57,22 +57,24 @@ require('pckr').add {
     { 'tpope/vim-repeat' },
     { 'kylechui/nvim-surround' },
     { 'echasnovski/mini.indentscope' },
+    { 'echasnovski/mini.cursorword' },
     { 'tpope/vim-obsession' },
     { 'folke/todo-comments.nvim' },
     { 'junegunn/vim-easy-align' },
     { 'lewis6991/gitsigns.nvim' },
     { 'rafcamlet/nvim-luapad' },
-    { 'ggandor/leap.nvim' },
+    -- { 'ggandor/leap.nvim' }, -- Requires typing two characters which is very stupid.
+    { 'folke/flash.nvim' },
     { 'norcalli/nvim-colorizer.lua' },
-    { 'lervag/vimtex',
-        -- TO MAKE THIS WORK YOU NEED TO GO INTO ALL TEX RELATED FILES IN $VIMRUNTIME/ftplugin AND CHANGE:
-        -- DEFINITION + ALL USAGES OF b:did_ftplugin  ->  b:did_my_ftplugin.
-        init = function()
-            vim.g.tex_flavor = 'latex'
-            vim.g.vimtex_compiler_progname = 'nvr'
-            vim.g.vimtex_view_general_viewer = 'SumatraPDF'
-            vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
-            vim.cmd([[ let maplocalleader = '\' ]])
-        end
-    },
+    -- { 'lervag/vimtex',
+    --     -- TO MAKE THIS WORK YOU NEED TO GO INTO ALL TEX RELATED FILES IN $VIMRUNTIME/ftplugin AND CHANGE:
+    --     -- DEFINITION + ALL USAGES OF b:did_ftplugin  ->  b:did_my_ftplugin.
+    --     init = function()
+    --         vim.g.tex_flavor = 'latex'
+    --         vim.g.vimtex_compiler_progname = 'nvr'
+    --         vim.g.vimtex_view_general_viewer = 'SumatraPDF'
+    --         vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+    --         vim.cmd([[ let maplocalleader = '\' ]])
+    --     end
+    -- },
 }

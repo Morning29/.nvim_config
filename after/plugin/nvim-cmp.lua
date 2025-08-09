@@ -1,13 +1,21 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
+local compare = require('cmp.config.compare')
 
 require('luasnip.loaders.from_vscode').lazy_load()
 
 cmp.setup({
     sources = {
-        { name = 'nvim_lsp' },
+        {
+            name = 'nvim_lsp',
+            -- entry_filter = function(entry, ctx)
+            -- local kind = require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Keyword'
+            -- return kind ~= 'Text'
+            -- return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Keyword'
+            -- end
+        },
         { name = 'nvim_lua' },
-        { name = 'luasnip',   option = { show_autosnippets = true } },
+        { name = 'luasnip', option = { show_autosnippets = true } },
         { name = 'path' },
         {
             name = 'spell',
@@ -32,8 +40,25 @@ cmp.setup({
         },
     },
     ---
+    sorting = {
+        priority_weight = 2,
+        comparators = {
+            compare.offset,
+            compare.exact,
+            -- compare.scopes,
+            compare.score,
+            compare.recently_used,
+            compare.length,
+            compare.locality,
+            compare.kind,
+            compare.sort_text,
+            -- compare.length,
+            compare.order,
+        },
+    },
+    ---
     performance = {
-        max_view_entries = 25,
+        max_view_entries = 50,
     },
     ---
     formatting = {

@@ -123,9 +123,7 @@
 --            • cterm: cterm attribute map, like |highlight-args|. If not
 --              set, cterm attributes will match those from the attribute
 --              map documented above.
---
 
--- local fg_normal = "#b0b0b0" -- e0e2ea
 local fg_normal = "#e0e2ea"
 -- stylua: ignore start
 local c = {
@@ -140,7 +138,7 @@ local c = {
     fg_number       = "#FFFFFF", -- "#ffffff",
     fg_type         = "#b0b0b0", -- "#cbcbcb",
     fg_builtintype  = "#fcd3af", -- "#cbcbcb",
-    fg_special      = fg_normal, -- "#cbcbcc",
+    fg_special      = "#fcd3af", -- fg_normal, -- "#cbcbcc",
     fg_operator     = fg_normal, -- "#fcd3b0",
     fg_border       = "#303030", -- "#424242", -- buffer separator
     fg_comment      = "#707070", -- "#707070",
@@ -166,6 +164,7 @@ local c = {
     fg_editor_dim   = "#915a39", -- "#ffc739"
     fg_motion_label = "#dd0070",
 
+    bg_faint        = "#282828",
     bg_light        = "#303030", -- "#b4b4b4",
     bg_dark         = "#242424", -- "#242424",
     bg_border       = "#202020", -- "#242424",
@@ -173,7 +172,7 @@ local c = {
     bg_normal_sbar  = "#303030", -- "#242424", -- TODO: if using light theme then light and vice versa
     bg_float        = "#303030", -- "#303030", -- TODO: if using light theme then dark and vice versa
     bg_float_sbar   = "#343434", -- "#303030", -- TODO: if using light theme then dark and vice versa
-    bg_cursorline   = "#343434", -- "#343434",
+    bg_cursorline   = "#303030", -- "#343434",
     bg_visual       = "#42372C", -- "#2d3f76",
     bg_search       = "#2d4c9d", -- "#3e68d7",
     bg_incsearch    = "#2e58c1", -- "#2e58c1",
@@ -210,10 +209,96 @@ local c = {
     },
 }
 
+-- local fg_normal = "#242424"
+-- -- stylua: ignore start
+-- local c = {
+--     NONE            = "none",
+--
+--     fg_normal       = fg_normal, -- "#cccccc",
+--     fg_normal_sbar  = "#707070", -- "#cccccc",
+--     fg_float_sbar   = "#707070", -- "#cccccc",
+--     -- fg_punctuation  = fg_normal, -- "#aaaaaa",
+--     fg_punctuation  = "#b0b0b0", -- "#aaaaaa",
+--     fg_string       = "#91b3d8", -- "#91b3d8",
+--     fg_number       = "#FFFFFF", -- "#ffffff",
+--     fg_type         = "#b0b0b0", -- "#cbcbcb",
+--     fg_builtintype  = "#fcd3af", -- "#cbcbcb",
+--     fg_special      = fg_normal, -- "#cbcbcc",
+--     fg_operator     = fg_normal, -- "#fcd3b0",
+--     fg_border       = "#909090", -- "#424242", -- buffer separator
+--     fg_comment      = "#505050", -- "#707070",
+--     fg_keyword      = "#fcd3af", -- "#fcd3ad",
+--     fg_keyword_dim  = "#907964", -- "#fcd3ad",
+--     fg_cursorlinenr = "#707070", -- "#464646", -- cursorlinenr
+--     fg_whitespace   = "#757575", -- "#464646", -- cursorlinenr
+--     fg_gutter       = "#b0b0b0", -- "#474747", -- line number
+--     fg_sidebar      = "#ff00ff", -- "#cecece",
+--     fg_variable     = "#e0e2ea", -- "#d0d0d0",
+--     -- fg_function     = "#996c46", -- "#996c46",
+--     fg_function     = "#d09b6e", -- "#996c46",
+--     -- fg_field        = "#d09b6e", -- fields used to be orange?
+--     fg_field        = fg_normal,
+--     -- fg_field        = "none",
+--     fg_macro        = "#cccccc", -- "#fcd3af",
+--     fg_statement    = "#fcd3af", -- "#fcd3af", -- statement, identifier,
+--     fg_identifier   = "#cccccc", -- "#fcd3af", -- statement, identifier,
+--     fg_todo         = "#a6c43d", -- "#a6c43d",
+--     fg_unused       = "#707070", -- "#484848", -- unused function, unused variable
+--     fg_constant     = fg_normal, -- "#a6744a", -- number (remap), boolean, matched brace (remap), constant
+--     fg_editor       = "#ff9e64", -- "#ffc739"
+--     fg_editor_dim   = "#915a39", -- "#ffc739"
+--     fg_motion_label = "#dd0070",
+--
+--     bg_faint        = "#868686",
+--     bg_light        = "#909090", -- "#b4b4b4",
+--     bg_dark         = "#808080", -- "#242424",
+--     bg_border       = "#707070", -- "#242424",
+--     bg_normal       = "#808080", -- "#242424", -- TODO: if using light theme then light and vice versa
+--     bg_normal_sbar  = "#909090", -- "#242424", -- TODO: if using light theme then light and vice versa
+--     bg_float        = "#909090", -- "#303030", -- TODO: if using light theme then dark and vice versa
+--     bg_float_sbar   = "#a0a0a0", -- "#303030", -- TODO: if using light theme then dark and vice versa
+--     bg_cursorline   = "#707070", -- "#343434",
+--     bg_visual       = "#42372C", -- "#2d3f76",
+--     bg_search       = "#2d4c9d", -- "#3e68d7",
+--     bg_incsearch    = "#2e58c1", -- "#2e58c1",
+--     bg_cursearch    = "#11709b", -- "#2e58c1",
+--     bg_sidebar      = "#808080", -- "#242424",
+--     bg_statusline   = "#909090", -- "#242424",
+--
+--     diag            = {
+--         fg_error             = "#e26a75",
+--         fg_warning           = "#ffc739",
+--         fg_info              = "#d0d0d0",
+--         fg_hint              = "#405055",
+--         fg_ok                = "#b8db87",
+--         fg_unnecessary       = "#707070",
+--
+--         fg_vtext_error       = "#893038",
+--         fg_vtext_warning     = "#463B12",
+--         fg_vtext_info        = "#404040",
+--         fg_vtext_hint        = "#404040",
+--         fg_vtext_ok          = "#455430",
+--
+--         fg_vtext_unnecessary = "#707070",
+--         sp_deprecated        = "#ffc739",
+--     },
+--     diff            = {
+--         add           = "#b8db87",
+--         change        = "#7ca1f2",
+--         delete        = "#e26a75",
+--         ignore        = "#ffc739",
+--         text          = "#545c7e",
+--         add_gutter    = "#587C58",
+--         change_gutter = "#5767A2",
+--         delete_gutter = "#656E76",
+--     },
+-- }
+
 local groups = {
     Normal                     = { fg = c.fg_normal, bg = c.bg_normal },
     -- NormalNC    = { fg = c.fg_normal, bg = c.bg_light },
     NormalNC                   = { link = "Normal" },
+    -- NormalNC                   = { bg = c.bg_border },
     EndOfBuffer                = { link = "Normal" },
     NormalFloat                = { bg = c.bg_float },
     FloatTitle                 = { fg = c.fg_normal, bg = c.bg_float, bold = true },
@@ -295,9 +380,9 @@ local groups = {
     Statement                  = { fg = c.fg_statement },
     Operator                   = { fg = c.fg_operator },
     Keyword                    = { fg = c.fg_keyword },
-    Repeat                     = { link = "Keyword" }, -- Loops etc.
-    Label                      = { fg = c.fg_number, italic = true }, -- underdashed, underdotted, standout, 
-    SpecialChar                = { link = "Keyword" }, -- String escape etc.
+    Repeat                     = { link = "Keyword" },                -- Loops etc.
+    Label                      = { fg = c.fg_number, italic = true }, -- underdashed, underdotted, standout,
+    SpecialChar                = { link = "Keyword" },                -- String escape etc.
 
     Spellbad                   = { undercurl = true, sp = c.diag.fg_error },
     SpellCap                   = { undercurl = true, sp = c.diag.fg_warning },
@@ -370,10 +455,19 @@ local nvim_cmp_groups = {
     CmpItemKindUnit       = { link = 'CmpItemKindKeyword' },
 }
 
-local leap_groups = {
-    LeapBackdrop = { link = 'Comment' }, -- or some grey
-    LeapMatch = { fg = c.fg_number, bold = true, nocombine = true, },
-    LeapLabel = { fg = c.fg_motion_label, bold = true, italic = true, nocombine = false },
+-- local leap_groups = {
+--     LeapBackdrop = { link = 'Comment' }, -- or some grey
+--     LeapMatch = { fg = c.fg_number, bold = true, nocombine = true, },
+--     LeapLabel = { fg = c.fg_motion_label, bold = true, italic = true, nocombine = false },
+-- }
+
+
+local flash_groups = {
+    FlashBackdrop = { link = 'Comment' },                                                 -- or some grey
+    -- FlashCurrent = { fg = c.fg_number, bg = c.bg_search, bold = true, nocombine = true }, -- or some grey
+    FlashCurrent = { fg = c.fg_number, bg = c.bg_search, bold = true, nocombine = true }, -- or some grey
+    FlashMatch = { fg = c.fg_number, bold = true, nocombine = true, },
+    FlashLabel = { fg = c.fg_motion_label, bold = true, italic = true, nocombine = false },
 }
 
 local vimtex_groups = {
@@ -449,6 +543,13 @@ local treesitter_groups = {
     ["@attribute.odin"]           = { link = "Keyword" },
     ["@punctuation.special.odin"] = { link = "Keyword" },
     ["@variable.member.odin"]     = { link = "Field" },
+}
+
+local mini_cursorword_groups = {
+    -- MiniCursorwordCurrent = {},
+    -- MiniCursorword        = { sp = c.bg_cursearch, underline = true },
+    -- MiniCursorword        = { sp = c.bg_cursearch, underline = true },
+
 }
 
 local gitsigns_groups = {
@@ -621,11 +722,19 @@ for name, val in pairs(lsp_groups) do
     vim.api.nvim_set_hl(0, name, val)
 end
 
-for name, val in pairs(leap_groups) do
+-- for name, val in pairs(leap_groups) do
+--     vim.api.nvim_set_hl(0, name, val)
+-- end
+
+for name, val in pairs(flash_groups) do
     vim.api.nvim_set_hl(0, name, val)
 end
 
 for name, val in pairs(treesitter_groups) do
+    vim.api.nvim_set_hl(0, name, val)
+end
+
+for name, val in pairs(mini_cursorword_groups) do
     vim.api.nvim_set_hl(0, name, val)
 end
 

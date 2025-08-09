@@ -15,7 +15,7 @@ require("todo-comments").setup({
         TODO = { icon = "  ", color = "todo" },
         HACK = { icon = "  ", color = "notif" },
         NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
-        PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+        PERF = { icon = " ", color = "notif", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
         RESUME = { icon = " ", color = "notif" },
     },
     highlight = {
