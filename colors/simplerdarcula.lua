@@ -502,6 +502,7 @@ local lsp_groups = {
     ["@lsp.type.enum.odin"]                 = { link = "Type" },
     ["@lsp.type.enumMember.odin"]           = { link = "Constant" },
     ["@lsp.typemod.variable.readonly.odin"] = { link = "Constant" },
+    ["@lsp.typemod.enum.readonly.odin"]     = { link = "Type" },
     -- ["@lsp.type.enumMember.odin"]          = { link = "Constant" },
     -- ["@lsp.type.comment"] = { link = "@comment" },
     -- ["@lsp.type.decorator"] = { link = "@attribute" },

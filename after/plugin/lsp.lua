@@ -94,6 +94,11 @@ vim.api.nvim_create_autocmd('LspTokenUpdate', {
                 token, args.buf, args.data.client_id, 'Function', { priority = 150 }
             )
         end
+        if token.type == 'enum' then
+            vim.lsp.semantic_tokens.highlight_token(
+                token, args.buf, args.data.client_id, 'Type', { priority = 141 }
+            )
+        end
     end,
 })
 
