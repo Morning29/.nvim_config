@@ -44,6 +44,7 @@ vim.keymap.set("", "h", "i", { noremap = true, silent = true })
 
 -- Use <C-t> for jump list instead of tag stack.
 vim.keymap.set("n", "<C-n>", "<C-i>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-t>", "<C-o>", { noremap = true, silent = true })
 
 -- https://github.com/tpope/vim-fugitive/issues/1425#issuecomment-995106715
 -- tpope plugins use 'h' in place of 'i'

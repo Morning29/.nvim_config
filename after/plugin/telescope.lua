@@ -19,38 +19,26 @@ vim.keymap.set('n', '<leader>gt', builtin.lsp_type_definitions, {})
 require('telescope').setup({
     defaults = {
         -- path_display = { "absolute" },
-        -- fname_width = 60,
+        layout_strategy = 'flex',
         layout_config = {
-            vertical = { width = 0.5 },
-            horizontal = { width = 0.9 },
-            -- other layout configuration here
+            vertical = {
+                height = 0.9,
+                preview_cutoff = 40,
+                prompt_position = "bottom",
+                width = 0.8
+            },
+            horizontal = {
+                height = 0.9,
+                preview_cutoff = 190,
+                prompt_position = "bottom",
+                width = 0.8
+            },
         },
-        -- other defaults configuration here
+        border = false,
+        -- borderchars = { " ", " ", " ", " ", " ", " ", " ", " " }, -- { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+        selection_caret = '  ',
     },
     pickers = {
         lsp_definitions = { fname_width = 60 }
     }
-    -- other configuration values here
 })
-
--- require('telescope.builtin').lsp_references({
---     path_display = { "smart" },
---     fname_width = 60,
--- })
---
--- require('telescope.builtin').lsp_definitions({
---     path_display = { "smart" },
---     fname_width = 60,
--- })
---
--- vim.api.nvim_create_autocmd("User", {
---   pattern = "TelescopePreviewerLoaded",
---   callback = function(args)
---     if args.data.filetype ~= "help" then
---       vim.wo.number = true
---     elseif args.data.bufname:match("*.csv") then
---       vim.wo.wrap = false
---     end
---   end,
--- })
---

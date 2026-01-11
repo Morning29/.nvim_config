@@ -13,43 +13,38 @@ local todo_keyword = function(keyword)
     return string.format(cmt, fmt)
 end
 
-local TODO = function()
-    return todo_keyword("TODO")
+local TODO = function() return todo_keyword("TODO") end
+local RESUME = function() return todo_keyword("RESUME") end
+local NOTE = function() return todo_keyword("NOTE") end
+local HACK = function() return todo_keyword("HACK") end
+local PERF = function() return todo_keyword("PERF") end
+local FIXME = function() return todo_keyword("FIXME") end
+local WARN = function() return todo_keyword("WARNING") end
+local NOCOMMIT = function() return todo_keyword("NOCOMMIT") end
+
+local snippet_datas = {
+    { trig = "todo",          namr = "todo comment",     fun_node = TODO },
+    { trig = "todo_resume",   namr = "resume comment",   fun_node = RESUME },
+    { trig = "todo_note",     namr = "note comment",     fun_node = NOTE },
+    { trig = "todo_hack",     namr = "hack comment",     fun_node = HACK },
+    { trig = "todo_perf",     namr = "perf comment",     fun_node = PERF },
+    { trig = "todo_fixme",    namr = "fixme comment",    fun_node = FIXME },
+    { trig = "todo_warning",  namr = "warning comment",  fun_node = WARN },
+    { trig = "todo_nocommit", namr = "nocommit comment", fun_node = NOCOMMIT },
+}
+
+local all_snips = {}
+
+for _, data in pairs(snippet_datas) do
+    table.insert(all_snips,
+        ls.snippet({
+            trig = data.trig,
+            namr = data.namr,
+        }, {
+            ls.function_node(data.fun_node, {}),
+            ls.insert_node(1, ""),
+        })
+    )
 end
 
-local RESUME = function()
-    return todo_keyword("RESUME")
-end
-
-local NOTE = function()
-    return todo_keyword("NOTE")
-end
-
-ls.add_snippets(nil, {
-    all = {
-        ls.snippet({
-            trig = "todo",
-            namr = "todo comment",
-            -- dscr = "Todo with name/date."
-        }, {
-            ls.function_node(TODO, {}),
-            ls.insert_node(1, ""),
-        }),
-        ls.snippet({
-            trig = "todo_resume",
-            namr = "resume comment",
-            -- dscr = "Todo with name/date."
-        }, {
-            ls.function_node(RESUME, {}),
-            ls.insert_node(1, ""),
-        }),
-        ls.snippet({
-            trig = "todo_note",
-            namr = "note comment",
-            -- dscr = "Todo with name/date."
-        }, {
-            ls.function_node(NOTE, {}),
-            ls.insert_node(1, ""),
-        }),
-    }
-})
+ls.add_snippets(nil, { all = all_snips })

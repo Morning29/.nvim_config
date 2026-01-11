@@ -10,6 +10,7 @@ require("todo-comments").setup({
         default = { "Identifier", "#ff00ff" },
     },
     keywords = {
+        NOCOMMIT = { icon = "  ", color = "error", alt = { "NOCOMMIT" } },
         FIX = { icon = "  ", color = "error", alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
         WARN = { icon = "  ", color = "warning", alt = { "WARNING", "XXX" } },
         TODO = { icon = "  ", color = "todo" },

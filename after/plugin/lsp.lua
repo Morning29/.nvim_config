@@ -85,7 +85,6 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
-
 vim.api.nvim_create_autocmd('LspTokenUpdate', {
     callback = function(args)
         local token = args.data.token
@@ -106,21 +105,21 @@ local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('mason').setup({})
 require('mason-lspconfig').setup({
     ensure_installed = { "lua_ls", "rust_analyzer", "gopls", "marksman", "pylsp", "powershell_es", "jsonls", "glsl_analyzer", "tinymist", },
-    -- handlers = nil,
     handlers = { function(server_name)
-        require('lspconfig')[server_name].setup({
+        vim.lsp.config(server_name, {
             capabilities = cmp_capabilities
         })
+        vim.lsp.enable(server_name)
     end
     },
 })
 
-require 'lspconfig'.powershell_es.setup {
+vim.lsp.config('powershell_es', {
     bundle_path = 'C:/tools/PowerShellEditorServices',
     shell = 'pwsh.exe',
-}
+})
 
-require 'lspconfig'.pylsp.setup {
+vim.lsp.config('pylsp', {
     settings = {
         pylsp = {
             plugins = {
@@ -131,17 +130,17 @@ require 'lspconfig'.pylsp.setup {
             }
         }
     }
-}
+})
 
-require("lspconfig")["tinymist"].setup {
+vim.lsp.config('tinymist', {
     settings = {
         formatterMode = "typstyle",
         exportPdf = "onType",
         semanticTokens = "disable"
     }
-}
+})
 
-require("lspconfig").ols.setup { -- Server-specific settings. See `:help lspconfig-setup`
+vim.lsp.config('ols', {
     capabilities = cmp_capabilities,
     init_options = {
         enable_hover = true,
@@ -161,10 +160,11 @@ require("lspconfig").ols.setup { -- Server-specific settings. See `:help lspconf
             { name = "intrinsics", path = 'C:/tools/Odin/base/intrinsics' },
             { name = "runtime",    path = 'C:/tools/Odin/base/runtime' },
         },
-    },
-}
+    }
+})
+vim.lsp.enable('ols')
 
-require("lspconfig").zls.setup({ -- Server-specific settings. See `:help lspconfig-setup`
+vim.lsp.config("zls", { -- Server-specific settings. See `:help lspconfig-setup`
     capabilities = cmp_capabilities,
     -- Perhaps handle link formatting in hover doc:
     -- handlers = {
