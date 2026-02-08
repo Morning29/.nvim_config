@@ -5,7 +5,10 @@ local function trim(s)
 end
 
 local todo_keyword = function(keyword)
-    local fmt = string.format("%s %s HSU: ", keyword, trim(os.date("%d/%m/%y")))
+    local fmt = string.format("%s HSU: ", trim(os.date("%d/%m/%y")))
+    if keyword then
+        fmt = string.format("%s %s", keyword, fmt)
+    end
     local cmt = vim.bo.commentstring
     if not string.match(cmt, " ") then
         fmt = " " .. fmt
@@ -13,6 +16,7 @@ local todo_keyword = function(keyword)
     return string.format(cmt, fmt)
 end
 
+local COMMENT = function() return todo_keyword() end
 local TODO = function() return todo_keyword("TODO") end
 local RESUME = function() return todo_keyword("RESUME") end
 local NOTE = function() return todo_keyword("NOTE") end
@@ -23,14 +27,15 @@ local WARN = function() return todo_keyword("WARNING") end
 local NOCOMMIT = function() return todo_keyword("NOCOMMIT") end
 
 local snippet_datas = {
-    { trig = "todo",          namr = "todo comment",     fun_node = TODO },
-    { trig = "todo_resume",   namr = "resume comment",   fun_node = RESUME },
-    { trig = "todo_note",     namr = "note comment",     fun_node = NOTE },
-    { trig = "todo_hack",     namr = "hack comment",     fun_node = HACK },
-    { trig = "todo_perf",     namr = "perf comment",     fun_node = PERF },
-    { trig = "todo_fixme",    namr = "fixme comment",    fun_node = FIXME },
-    { trig = "todo_warning",  namr = "warning comment",  fun_node = WARN },
-    { trig = "todo_nocommit", namr = "nocommit comment", fun_node = NOCOMMIT },
+    { trig = "todo",           namr = "todo comment",     fun_node = TODO },
+    { trig = "todo_only_date", namr = "dated comment",    fun_node = COMMENT },
+    { trig = "todo_resume",    namr = "resume comment",   fun_node = RESUME },
+    { trig = "todo_note",      namr = "note comment",     fun_node = NOTE },
+    { trig = "todo_hack",      namr = "hack comment",     fun_node = HACK },
+    { trig = "todo_perf",      namr = "perf comment",     fun_node = PERF },
+    { trig = "todo_fixme",     namr = "fixme comment",    fun_node = FIXME },
+    { trig = "todo_warning",   namr = "warning comment",  fun_node = WARN },
+    { trig = "todo_nocommit",  namr = "nocommit comment", fun_node = NOCOMMIT },
 }
 
 local all_snips = {}

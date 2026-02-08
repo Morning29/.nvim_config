@@ -51,6 +51,7 @@ require('gitsigns').setup {
 
         -- Navigation
         map('n', ']c', function()
+        -- map('n', '<leader>vnn', function()
             if vim.wo.diff then
                 vim.cmd.normal({ ']c', bang = true })
             else
@@ -59,6 +60,7 @@ require('gitsigns').setup {
         end)
 
         map('n', '[c', function()
+        -- map('n', '<leader>vnN', function()
             if vim.wo.diff then
                 vim.cmd.normal({ '[c', bang = true })
             else

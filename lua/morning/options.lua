@@ -32,7 +32,7 @@ vim.opt.statusline = [[ %<%f %h%m%r%=%-14.(%l,%c%V%) %P ]]
 
 vim.opt.rnu = true
 vim.opt.nu = true
-vim.opt.mouse = 'n'
+vim.opt.mouse = 'nvi'
 
 vim.opt.pumheight = 30
 vim.opt.pumwidth = 60
@@ -93,7 +93,7 @@ vim.opt.showmode = false
 
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 
-vim.opt.sidescrolloff = 8
+vim.opt.sidescrolloff = 1
 vim.opt.smoothscroll = true
 
 vim.opt.smartcase = true

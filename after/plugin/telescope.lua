@@ -34,11 +34,37 @@ require('telescope').setup({
                 width = 0.8
             },
         },
-        border = false,
-        -- borderchars = { " ", " ", " ", " ", " ", " ", " ", " " }, -- { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+        -- border = false,
+
+        dynamic_preview_title = true,
+        results_title = false,
+        preview_title = false,
+        borderchars = { " ", " ", " ", " ", " ", " ", " ", " " }, -- { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
         selection_caret = '  ',
+        file_ignore_patterns = { "%.ttf" },
     },
     pickers = {
         lsp_definitions = { fname_width = 60 }
     }
 })
+
+local harpoon = require('harpoon')
+
+local conf = require("telescope.config").values
+local function toggle_telescope(harpoon_files)
+    local file_paths = {}
+    for _, item in ipairs(harpoon_files.items) do
+        table.insert(file_paths, item.value)
+    end
+
+    require("telescope.pickers").new({}, {
+        prompt_title = "Harpoon",
+        finder = require("telescope.finders").new_table({
+            results = file_paths,
+        }),
+        previewer = conf.file_previewer({}),
+        sorter = conf.generic_sorter({}),
+    }):find()
+end
+
+vim.keymap.set("n", "<leader>hmt", function() toggle_telescope(harpoon:list()) end, { desc = "Open harpoon window" })

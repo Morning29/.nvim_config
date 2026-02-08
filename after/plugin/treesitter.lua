@@ -1,5 +1,5 @@
-local treesitter_enabled_langs  = { "c", "lua", "vim", "vimdoc", "query", "rust", "cpp", "zig", "odin", "py" }
-require'nvim-treesitter'.install(treesitter_enabled_langs)
+local treesitter_enabled_langs = { "c", "lua", "vim", "vimdoc", "query", "rust", "cpp", "zig", "odin", "py", "glsl", }
+require 'nvim-treesitter'.install(treesitter_enabled_langs)
 vim.api.nvim_create_autocmd('FileType', {
     pattern = treesitter_enabled_langs,
     callback = function()

@@ -20,6 +20,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         -- gofmt uses tabs, don't care!
         local format_cmd = '<cmd>lua vim.lsp.buf.format({async = true})<cr>'
         if client.name == "gopls" then format_cmd = '<cmd>lua vim.lsp.buf.format({async = false})<cr><cmd>retab<cr>' end
+        -- if client.name == "ols" then format_cmd = '<cmd>lua print("No formatter :(")<cr>' end
 
         vim.keymap.set('n', '<M-C-l>', format_cmd, { buffer = bufnr })          -- Format file'
         vim.keymap.set('x', '<M-C-l>', format_cmd, { buffer = bufnr })          -- Format selection'
@@ -139,6 +140,50 @@ vim.lsp.config('tinymist', {
         semanticTokens = "disable"
     }
 })
+-- -strict-style
+--         This enforces parts of same style as the Odin compiler, prefer '-vet-style -vet-semicolon' if you do not want to match it exactly.
+--
+--         Errs on unneeded tokens, such as unneeded semicolons.
+--         Errs on missing trailing commas followed by a newline.
+--         Errs on deprecated syntax.
+--         Errs when the attached-brace style is not adhered to (also known as 1TBS).
+--         Errs when 'case' labels are not in the same column as the associated 'switch' token.
+-- -vet
+--         Does extra checks on the code.
+--         Extra checks include:
+--                 -vet-unused
+--                 -vet-unused-variables
+--                 -vet-unused-imports
+--                 -vet-shadowing
+--                 -vet-using-stmt
+-- -vet-cast
+--         Errs on casting a value to its own type or using `transmute` rather than `cast`.
+-- -vet-packages:<comma-separated-strings>
+--         Sets which packages by name will be vetted.
+--         Files with specific +vet tags will not be ignored if they are not in the packages set.
+-- -vet-semicolon
+--         Errs on unneeded semicolons.
+-- -vet-shadowing
+--         Checks for variable shadowing within procedures.
+-- -vet-style
+--         Errs on missing trailing commas followed by a newline.
+--         Errs on deprecated syntax.
+--         Does not err on unneeded tokens (unlike -strict-style).
+-- -vet-tabs
+--         Errs when the use of tabs has not been used for indentation.
+-- -vet-unused
+--         Checks for unused declarations (variables and imports).
+-- -vet-unused-imports
+--         Checks for unused import declarations.
+-- -vet-unused-procedures
+--         Checks for unused procedures.
+--         Must be used with -vet-packages or specified on a per file with +vet tags.
+-- -vet-unused-variables
+--         Checks for unused variable declarations.
+-- -vet-using-param
+--         Checks for the use of 'using' on procedure parameters.
+--         'using' is considered bad practice outside of immediate refactoring.
+-- -vet-using-stmt
 
 vim.lsp.config('ols', {
     capabilities = cmp_capabilities,
@@ -150,6 +195,7 @@ vim.lsp.config('ols', {
         enable_references = true,
         enable_document_symbols = true,
         checker_args = "-debug -vet-shadowing -vet-style -vet-cast", -- -vet-unused", -- -vet-casts -vet-using-param",
+        -- checker_args = "-debug -vet-shadowing -vet-semicolon -vet-style -vet-cast -strict-style -vet-unused-variables -vet-using-param -vet-using-stmt -vet-unused-procedures",
         verbose = true,
         enable_rename = true,
         enable_inlay_hints = true,

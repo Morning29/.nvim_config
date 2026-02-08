@@ -156,9 +156,9 @@ local c = {
     -- fg_field        = "#d09b6e", -- fields used to be orange?
     fg_field        = fg_normal,
     -- fg_field        = "none",
-    fg_macro        = "#cccccc", -- "#fcd3af",
+    fg_macro        = "#907964", -- "#fcd3af",
     fg_statement    = "#fcd3af", -- "#fcd3af", -- statement, identifier,
-    fg_identifier   = "#cccccc", -- "#fcd3af", -- statement, identifier,
+    fg_identifier   = fg_normal, -- "#fcd3af", -- statement, identifier,
     fg_todo         = "#a6c43d", -- "#a6c43d",
     fg_unused       = "#707070", -- "#484848", -- unused function, unused variable
     fg_constant     = fg_normal, -- "#a6744a", -- number (remap), boolean, matched brace (remap), constant
@@ -213,9 +213,8 @@ local c = {
 
 local groups = {
     Normal                     = { fg = c.fg_normal, bg = c.bg_normal },
-    -- NormalNC    = { fg = c.fg_normal, bg = c.bg_light },
+    -- NormalNC                   = { fg = c.fg_normal, bg = c.bg_dark },
     NormalNC                   = { link = "Normal" },
-    -- NormalNC                   = { bg = c.bg_border },
     EndOfBuffer                = { link = "Normal" },
     NormalFloat                = { bg = c.bg_float },
     FloatTitle                 = { fg = c.fg_normal, bg = c.bg_float, bold = true },
@@ -237,7 +236,9 @@ local groups = {
     LineNrAbove                = { link = "LineNr" },
     LineNrBelow                = { link = "LineNr" },
     WinSeparator               = { fg = c.fg_border },
-    StatusLine                 = { bg = c.bg_statusline, italic = true }, -- to avoid ^ in statusline
+    StatusLine                 = { bg = c.bg_statusline, italic = true, bold = true }, -- to avoid ^ in statusline
+    -- StatusLine                 = { bg = c.fg_keyword_dim, italic = true }, -- to avoid ^ in statusline
+    StatusLineNC               = { bg = c.bg_statusline, italic = true },              -- to avoid ^ in statusline
     Title                      = { bold = true },
     Bold                       = { bold = true },
     Conceal                    = { link = "Comment" },
@@ -297,9 +298,9 @@ local groups = {
     Statement                  = { fg = c.fg_statement },
     Operator                   = { fg = c.fg_operator },
     Keyword                    = { fg = c.fg_keyword },
-    Repeat                     = { link = "Keyword" },                             -- Loops etc.
-    Label                      = { fg = c.fg_number, italic = true, bold = true }, -- underdashed, underdotted, standout,
-    SpecialChar                = { link = "Keyword" },                             -- String escape etc.
+    Repeat                     = { link = "Keyword" },              -- Loops etc.
+    Label                      = { fg = c.fg_number, bold = true }, -- underdashed, underdotted, standout,
+    SpecialChar                = { link = "Keyword" },              -- String escape etc.
 
     Spellbad                   = { undercurl = true, sp = c.diag.fg_error },
     SpellCap                   = { undercurl = true, sp = c.diag.fg_warning },
@@ -374,9 +375,14 @@ local nvim_cmp_groups = {
 
 local telescope_groups = {
     TelescopePromptNormal  = { bg = c.bg_float, },
-    TelescopeBorder        = { bg = c.bg_light, },
+    TelescopePromptBorder  = { bg = c.bg_float, },
+    TelescopePromptTitle   = { bg = c.bg_float, fg = c.fg_comment, bold = true },
     TelescopePreviewNormal = { bg = c.bg_dark },
+    TelescopePreviewBorder = { bg = c.bg_light },
+    TelescopePreviewTitle  = { bg = c.bg_light, italic = true },
     TelescopeResultsNormal = { bg = c.bg_light },
+    TelescopeResultsBorder = { bg = c.bg_light },
+    TelescopeResultsTitle  = { bg = c.bg_light },
     TelescopeMatching      = { fg = c.fg_editor },
     -- TelescopePromptTitle = {},
     -- TelescopePreviewTitle = {},
