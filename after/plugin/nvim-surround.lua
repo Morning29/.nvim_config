@@ -3,7 +3,9 @@ require('nvim-surround').setup({
         -- insert = "<C-g>s",
         -- insert_line = "<C-g>S",
         insert = "<C-S>",
-        insert_line = "<C-s>",
+        -- insert_line = "<C-s>",
+        -- NOTE: Terminal cfg map ^[ -> F16.
+        insert_line = "<F16>",
         -- normal = "ys",
         -- normal_cur = "yss",
         -- normal_line = "yS",

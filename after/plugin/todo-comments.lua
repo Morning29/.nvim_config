@@ -11,13 +11,14 @@ require("todo-comments").setup({
     },
     keywords = {
         NOCOMMIT = { icon = "  ", color = "error", alt = { "NOCOMMIT", "NOCHECKIN" } },
-        FIX = { icon = "  ", color = "error", alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
-        WARN = { icon = "  ", color = "warning", alt = { "WARNING", "XXX" } },
+        FIX = { icon = "  ", color = "warning", alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
+        WARN = { icon = "  ", color = "warning", alt = { "WARNING" } },
         TODO = { icon = "  ", color = "todo" },
         HACK = { icon = "  ", color = "notif" },
         NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
         PERF = { icon = " ", color = "notif", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
         RESUME = { icon = " ", color = "notif" },
+        BINDLESS = { icon = " ", color = "todo" },
     },
     highlight = {
         multiline = false,        -- enable multine todo comments

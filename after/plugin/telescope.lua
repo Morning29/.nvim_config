@@ -1,6 +1,8 @@
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+-- vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>ff', '<cmd>lua require("telescope.builtin").find_files({no_ignore = true})<cr>', {})
 vim.keymap.set('n', '<leader>fF', builtin.git_files, {})
+vim.keymap.set('n', '<leader>fc', builtin.git_status, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
@@ -41,7 +43,27 @@ require('telescope').setup({
         preview_title = false,
         borderchars = { " ", " ", " ", " ", " ", " ", " ", " " }, -- { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
         selection_caret = '  ',
-        file_ignore_patterns = { "%.ttf" },
+        file_ignore_patterns = {
+            "^src_old/",
+            "^src_old\\",
+            "%.bin",
+            "%.dds",
+            "%.ttf",
+            "%.spv",
+            "%.png",
+            "%.glb",
+            "%.gltf",
+            "%.obj",
+            "%.mtl",
+            "%.pdb",
+            "%.rdi",
+            "%.rad",
+            "%.exe",
+            "%.zip",
+            "%.log",
+            "%.lib",
+            "%.tracy",
+        },
     },
     pickers = {
         lsp_definitions = { fname_width = 60 }

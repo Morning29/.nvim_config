@@ -25,6 +25,7 @@ local PERF = function() return todo_keyword("PERF") end
 local FIXME = function() return todo_keyword("FIXME") end
 local WARN = function() return todo_keyword("WARNING") end
 local NOCOMMIT = function() return todo_keyword("NOCOMMIT") end
+local BINDLESS = function() return todo_keyword("@BINDLESS") end
 
 local snippet_datas = {
     { trig = "todo",           namr = "todo comment",     fun_node = TODO },
@@ -36,6 +37,7 @@ local snippet_datas = {
     { trig = "todo_fixme",     namr = "fixme comment",    fun_node = FIXME },
     { trig = "todo_warning",   namr = "warning comment",  fun_node = WARN },
     { trig = "todo_nocommit",  namr = "nocommit comment", fun_node = NOCOMMIT },
+    { trig = "todo_bindless",  namr = "bindless comment", fun_node = BINDLESS },
 }
 
 local all_snips = {}
