@@ -4,7 +4,7 @@ vim.keymap.set({ "n", "i", "v" }, "<C-h>", "<nop>")
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = vim.api.nvim_create_augroup("highlight_on_yank", { clear = true }),
     callback = function(_)
-        vim.highlight.on_yank({ higroup = 'Visual', timeout = 300 })
+        vim.hl.on_yank({ higroup = 'Visual', timeout = 300 })
     end,
 })
 
@@ -36,11 +36,18 @@ vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { noremap = true, silent = true })
 vim.keymap.set("i", "<esc>", "<cmd>noh<cr><esc>", { noremap = true, silent = true })
 vim.keymap.set("n", "<esc>", "<cmd>noh<cr><esc>", { noremap = true, silent = true })
 
+vim.keymap.del({ "x", "o" }, "in")
+
 -- ijkl
 vim.keymap.set("", "i", "k", { noremap = true, silent = true })
 vim.keymap.set("", "j", "h", { noremap = true, silent = true })
 vim.keymap.set("", "k", "j", { noremap = true, silent = true })
 vim.keymap.set("", "h", "i", { noremap = true, silent = true })
+
+-- vim.keymap.set({ "v", "x" }, "i", "<Up>", { noremap = true, silent = true })
+-- vim.keymap.set({ "v", "x" }, "j", "<Left>", { noremap = true, silent = true })
+-- vim.keymap.set({ "v", "x" }, "k", "<Down>", { noremap = true, silent = true })
+-- vim.keymap.set({ "v", "x" }, "h", "<Right>", { noremap = true, silent = true })
 
 -- Use <C-t> for jump list instead of tag stack.
 vim.keymap.set("n", "<C-n>", "<C-i>", { noremap = true, silent = true })

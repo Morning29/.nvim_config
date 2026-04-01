@@ -12,18 +12,47 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set('n', '<C-p>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')       -- Show function signature'
         vim.keymap.set('n', '<F6>', '<cmd>lua vim.lsp.buf.rename()<cr>')                -- Rename symbol'
         vim.keymap.set('n', '<leader>gl', '<cmd>lua vim.diagnostic.open_float()<cr>')   -- Show diagnostic'
-        vim.keymap.set("n", "<F1>", "<cmd>lua vim.diagnostic.goto_next()<cr>")
-        vim.keymap.set("n", "<F2>", '<cmd>lua vim.diagnostic.goto_next({severity = "ERROR"})<cr>')
-        vim.keymap.set("n", "<F25>", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
-        vim.keymap.set("n", "<F26>", '<cmd>lua vim.diagnostic.goto_prev({severity = "ERROR"})<cr>')
+        -- vim.keymap.set("n", "<F1>", "<cmd>lua vim.diagnostic.goto_next()<cr>")
+        -- vim.keymap.set("n", "<F2>", '<cmd>lua vim.diagnostic.goto_next({severity = "ERROR"})<cr>')
+        -- vim.keymap.set("n", "<F25>", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
+        -- vim.keymap.set("n", "<F26>", '<cmd>lua vim.diagnostic.goto_prev({severity = "ERROR"})<cr>')
 
+        vim.keymap.set("n", "<F1>", "<cmd>lua vim.diagnostic.jump({count = 1})<cr>")
+        vim.keymap.set("n", "<F2>", '<cmd>lua vim.diagnostic.jump({count = 1, severity = "ERROR"})<cr>')
+        vim.keymap.set("n", "<F25>", "<cmd>lua vim.diagnostic.jump({count = -1})<cr>")
+        vim.keymap.set("n", "<F26>", '<cmd>lua vim.diagnostic.jump({count = -1, severity = "ERROR"})<cr>')
+
+        local format_cmd = '<cmd>lua vim.lsp.buf.format({async = false})<cr>'
         -- gofmt uses tabs, don't care!
-        local format_cmd = '<cmd>lua vim.lsp.buf.format({async = true})<cr>'
         if client.name == "gopls" then format_cmd = '<cmd>lua vim.lsp.buf.format({async = false})<cr><cmd>retab<cr>' end
-        -- if client.name == "ols" then format_cmd = '<cmd>lua print("No formatter :(")<cr>' end
+        if client.name == "slangd" then client.server_capabilities.semanticTokensProvider = nil end
 
-        vim.keymap.set('n', '<M-C-l>', format_cmd, { buffer = bufnr })          -- Format file'
-        vim.keymap.set('x', '<M-C-l>', format_cmd, { buffer = bufnr })          -- Format selection'
+        vim.keymap.set('n', '<M-C-l>', format_cmd, { buffer = bufnr }) -- Format file'
+        vim.keymap.set('x', '<M-C-l>', format_cmd, { buffer = bufnr }) -- Format selection'
+
+        -- if client.name == "slangd" then
+        --     vim.keymap.set('n', '<M-C-l>',
+        --         function()
+        --             require("conform").format({ async = true })
+        --         end,
+        --         { buffer = bufnr })
+        --     vim.keymap.set('x', '<M-C-l>',
+        --         function()
+        --             require("conform").format({ async = true }, function(err)
+        --                 if not err then
+        --                     local mode = vim.api.nvim_get_mode().mode
+        --                     if vim.startswith(string.lower(mode), "v") then
+        --                         vim.api.nvim_feedkeys(
+        --                             vim.api.nvim_replace_termcodes("<Esc>", true, false, true),
+        --                             "n",
+        --                             true
+        --                         )
+        --                     end
+        --                 end
+        --             end)
+        --         end,
+        --         { buffer = bufnr })
+        -- end
 
         vim.keymap.set('n', '<A-CR>', '<cmd>lua vim.lsp.buf.code_action()<cr>') -- Execute code action
         -- Visual mode code actions
@@ -35,8 +64,182 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
+vim.diagnostic.config({
+    jump = { float = true, update_in_insert = false }
+    -- float = true,
+    -- virtual_text = true,
+})
+
+require("conform").setup({
+    formatters_by_ft = {
+        shaderslang = { "clang-format" },
+    },
+})
+
+local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+require('mason').setup({})
+require('mason-lspconfig').setup({
+    ensure_installed = { "lua_ls", "pylsp", "powershell_es", "jsonls", "slangd" }, -- "rust_analyzer", "gopls", "marksman",
+    handlers = { function(server_name)
+        vim.lsp.config(server_name, {
+            capabilities = cmp_capabilities
+        })
+        vim.lsp.enable(server_name)
+    end
+    },
+})
+
+vim.lsp.config('slangd', {
+    cmd = { 'C:/tools/Slang/bin/slangd.exe' },
+    settings = {
+        slang = {
+            -- predefinedMacros = {"MY_VALUE_MACRO=1"},
+            -- inlayHints = {
+            -- deducedTypes = true,
+            -- parameterNames = true,
+            -- }
+        }
+    }
+})
+
+vim.lsp.config('powershell_es', {
+    bundle_path = 'C:/tools/PowerShellEditorServices',
+    shell = 'pwsh.exe',
+    settings = {
+        powershell = {
+            codeFormatting = {
+                Preset = 'OTBS'
+            }
+        }
+    },
+})
+
+vim.lsp.config('pylsp', {
+    settings = {
+        pylsp = {
+            plugins = {
+                pycodestyle = {
+                    ignore = { 'W391' },
+                    maxLineLength = 1000
+                }
+            }
+        }
+    }
+})
+
+vim.lsp.config('shader-language-server', {
+    capabilities = cmp_capabilities,
+    cmd = { 'C:/tools/shader-language-server/shader-language-server.exe' },
+    filetypes = { 'glsl', 'hlsl' },
+})
+vim.lsp.enable('shader-language-server')
+
+vim.api.nvim_create_autocmd('FileType', {
+    group = vim.api.nvim_create_augroup("make", { clear = true }),
+    callback = function(opts)
+        local buf_opts = vim.bo[opts.buf]
+        local ft = buf_opts.filetype
+        if buf_opts.filetype == "odin" then
+            buf_opts.makeprg = "odin build src -debug"
+            buf_opts.errorformat = [[%f(%l:%c)\ %m]]
+        elseif ft == "glsl" or ft == "shaderslang" then
+            -- buf_opts.makeprg = "compile_shader.bat " .. opts.file
+            buf_opts.makeprg = [[pwsh compile_shader.ps1 ]] .. opts.file
+            buf_opts.errorformat = [[ERROR: %f:%l:\ %m]]
+        end
+    end,
+})
+
+---@class SemanticTokenModifiers
+---@field declaration boolean?
+---@field documentation boolean?
+---@field global boolean?
+
+---@class SemanticToken
+---@field line number
+---@field start_col number
+---@field end_col number
+---@field marked boolean
+---@field type string
+---@field modifiers SemanticTokenModifiers
+vim.api.nvim_create_autocmd('LspTokenUpdate', {
+    callback = function(args)
+        --- @type SemanticToken
+        local token = args.data.token
+        local captures = vim.treesitter.get_captures_at_pos(args.buf, token.line, token.start_col)
+
+        if token.type == 'function' then
+            vim.lsp.semantic_tokens.highlight_token(
+                token, args.buf, args.data.client_id, 'Function', { priority = 150 }
+            )
+        end
+        if token.type == 'enum' then
+            vim.lsp.semantic_tokens.highlight_token(
+                token, args.buf, args.data.client_id, 'Type', { priority = 141 }
+            )
+        end
+        for _, capture in pairs(captures) do
+            if capture.capture == 'shaderslangType' then
+                vim.lsp.semantic_tokens.highlight_token(
+                    token, args.buf, args.data.client_id, 'Keyword', { priority = 141 }
+                )
+            end
+        end
+    end,
+})
+
+vim.lsp.config('ols', {
+    capabilities = cmp_capabilities,
+    init_options = {
+        enable_format = true,              -- Turns on formatting with odinfmt. (Enabled by default)
+        enable_hover = true,               -- Enables hover feature. (Enabled by default)
+        enable_document_symbols = true,    -- Turns on outline of all your global declarations in your document. (Enabled by default)
+        -- enable_fake_methods = true,             -- Turn on fake methods completion. This is currently highly experimental.
+        enable_overload_resolution = true, -- Enable go-to-definition to resolve overloaded procedures from procedure groups based on call arguments.
+        -- enable_references = true,          -- Turns on finding references for a symbol. (Enabled by default)
+        -- enable_document_highlights = true, -- Turns on highlighting of symbol references in file. (Enabled by default)
+        -- enable_document_links = true,      -- Follow links when opening documentation. This is usually done via <ctrl+click> and will open the documentation in a browser (or similar). (Enabled by default)
+        -- enable_completion_matching = true, -- Attempt to match types and pointers when passing arguments to procedures. (Enabled by default)
+        -- enable_inlay_hints_params = true,       -- Turn on inlay hints for (non-default) parameters.
+        -- enable_inlay_hints_default_params = true, -- Turn on inlay hints for default parameters.
+        -- enable_inlay_hints_implicit_return = true, -- Turn on inlay hints for implicit return values.
+        enable_semantic_tokens = true,    -- Turns on syntax highlighting.
+        enable_snippets = false,          -- Turns on builtin snippets
+        enable_procedure_snippet = false, -- Use snippets when completing procedures—adds parenthesis after the name. (Enabled by default)
+        -- enable_checker_only_saved = true,               -- Turns on only calling the checker on the package being saved. (Enabled by default)
+        -- enable_checker_diagnostics_on_start = true, -- Turns on running all workspace diagnostics using odin check when starting ols (experimental).
+        enable_auto_import = true,                      -- Automatically import packages that aren't in your import on completion.
+        enable_comp_lit_signature_help = true,          -- Provide signature help for comp lits such as when instantiating structs. Will not display correctly on some editors such as vscode.
+        enable_comp_lit_signature_help_use_docs = true, -- Put signature help for comp lits in the documentation. This will allow it to be rendered nicely using markdown in editors that render the label without colour on one line.
+        -- enable_code_action_invert_if = true,         -- Enables a code action to invert if statements.
+        -- odin_command = "...",                        -- Specify the location to your Odin executable, rather than relying on the environment path.
+        -- odin_root_override = "...",                  -- Allows you to specify a custom ODIN_ROOT that ols will use to look for odin core libraries when implementing custom runtimes.
+        verbose = false,                                                                 -- Logs warnings instead of just errors.
+        checker_args = "-debug -vet-shadowing -vet-style -vet-cast -max-error-count:64", -- Pass custom arguments to odin check.
+        checker_skip_packages = { "imgui", "vma", "tracy", "shaderc" },                  -- Paths to packages that should not be checked by odin check.
+        collections = {
+            { name = "builtin",    path = 'C:/tools/Odin/base/builtin' },
+            { name = "intrinsics", path = 'C:/tools/Odin/base/intrinsics' },
+            { name = "runtime",    path = 'C:/tools/Odin/base/runtime' },
+            { name = "sanitizer",  path = 'C:/tools/Odin/base/sanitizer' },
+            { name = "shared",     path = 'C:/tools/Odin/shared' },
+            -- { name = "imgui",      path = 'C:/tools/Odin/shared/odin-imgui' },
+            { name = "vendor",     path = 'C:/tools/Odin/vendor' },
+        },
+        -- profile = "...",                                              -- What profile to currently use.
+        -- profiles = { ... },                                             -- List of different profiles that describe the environment ols is running under. This allows you to define different operating systems, architectures and defines for ols to use during development, easily switching between them using the profile configuration.
+    }
+})
+vim.lsp.enable('ols')
+
 vim.api.nvim_create_user_command("Odin", function(cmd)
-    cmd = vim.list_extend(vim.list_extend({ 'odin' }, cmd.fargs), { '-terse-errors' })
+    cmd = vim.list_extend(
+        vim.list_extend({ 'odin' }, cmd.fargs), {
+            '-terse-errors',
+            -- '-vet-packages:main', '-vet-unused-procedures',
+            -- '-vet-unused',
+        }
+    )
 
     local command_res = vim.system(cmd):wait()
 
@@ -72,68 +275,6 @@ vim.api.nvim_create_autocmd('BufWritePost', {
             -- vim.cmd([[ Odin check tests -debug -no-entry-point ]])
         end
     end,
-})
-
-vim.api.nvim_create_autocmd('FileType', {
-    group = vim.api.nvim_create_augroup("make", { clear = true }),
-    callback = function(opts)
-        local buf_opts = vim.bo[opts.buf]
-        local ft = buf_opts.filetype
-        if buf_opts.filetype == "odin" then
-            buf_opts.makeprg = "odin build src -debug"
-            buf_opts.errorformat = [[%f(%l:%c)\ %m]]
-        elseif ft == "glsl" then
-            buf_opts.makeprg = "compile_shader.bat " .. opts.file
-            buf_opts.errorformat = [[ERROR: %f:%l:\ %m]]
-        end
-    end,
-})
-
-vim.api.nvim_create_autocmd('LspTokenUpdate', {
-    callback = function(args)
-        local token = args.data.token
-        if token.type == 'function' then
-            vim.lsp.semantic_tokens.highlight_token(
-                token, args.buf, args.data.client_id, 'Function', { priority = 150 }
-            )
-        end
-        if token.type == 'enum' then
-            vim.lsp.semantic_tokens.highlight_token(
-                token, args.buf, args.data.client_id, 'Type', { priority = 141 }
-            )
-        end
-    end,
-})
-
-local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-require('mason').setup({})
-require('mason-lspconfig').setup({
-    ensure_installed = { "lua_ls", "pylsp", "powershell_es", "jsonls", "glsl_analyzer" }, -- "rust_analyzer", "gopls", "marksman",
-    handlers = { function(server_name)
-        vim.lsp.config(server_name, {
-            capabilities = cmp_capabilities
-        })
-        vim.lsp.enable(server_name)
-    end
-    },
-})
-
-vim.lsp.config('powershell_es', {
-    bundle_path = 'C:/tools/PowerShellEditorServices',
-    shell = 'pwsh.exe',
-})
-
-vim.lsp.config('pylsp', {
-    settings = {
-        pylsp = {
-            plugins = {
-                pycodestyle = {
-                    ignore = { 'W391' },
-                    maxLineLength = 1000
-                }
-            }
-        }
-    }
 })
 
 -- -strict-style
@@ -180,88 +321,3 @@ vim.lsp.config('pylsp', {
 --         Checks for the use of 'using' on procedure parameters.
 --         'using' is considered bad practice outside of immediate refactoring.
 -- -vet-using-stmt
-
-vim.lsp.config('ols', {
-    capabilities = cmp_capabilities,
-    init_options = {
-        enable_hover = true,
-        enable_snippets = true,
-        enable_procedure_snippet = false,
-        enable_semantic_tokens = true,
-        enable_references = true,
-        enable_document_symbols = true,
-        checker_args = "-debug -vet-shadowing -vet-style -vet-cast", -- -vet-unused", -- -vet-casts -vet-using-param",
-        -- checker_args = "-debug -vet-shadowing -vet-semicolon -vet-style -vet-cast -strict-style -vet-unused-variables -vet-using-param -vet-using-stmt -vet-unused-procedures",
-        verbose = true,
-        enable_rename = true,
-        enable_inlay_hints = true,
-        -- enable_checker_only_saved = false,
-        -- enable_fake_methods = false,
-        collections = {
-            { name = "builtin",    path = 'C:/tools/Odin/base/builtin' },
-            { name = "intrinsics", path = 'C:/tools/Odin/base/intrinsics' },
-            { name = "runtime",    path = 'C:/tools/Odin/base/runtime' },
-        },
-    }
-})
-vim.lsp.enable('ols')
-
-
--- vim.lsp.config('tinymist', {
---     settings = {
---         formatterMode = "typstyle",
---         exportPdf = "onType",
---         semanticTokens = "disable"
---     }
--- })
-
--- vim.lsp.config("zls", { -- Server-specific settings. See `:help lspconfig-setup`
---     capabilities = cmp_capabilities,
---     -- Perhaps handle link formatting in hover doc:
---     -- handlers = {
---     --     ["textDocument/hover"] = function (_, result, ctx, config)
---     --         local old_hover = vim.lsp.handlers.hover
---     --         print("result:")
---     --         vim.print(result)
---     --         print("ctx:")
---     --         vim.print(ctx)
---     --         print("config:")
---     --         vim.print(config)
---     --     end
---     -- },
---
---     -- Further information on how to configure ZLS: https://github.com/zigtools/zls/wiki/Configuration
---     settings = {
---         zls = {
---             -- enable_snippets: Enables snippet completions when the client also supports them. (default: true)
---             enable_snippets = true,
---             -- enable_argument_placeholders: Whether to enable function argument placeholder completions. (default: true)
---             enable_argument_placeholders = false,
---             -- semantic_tokens: Set level of semantic tokens. Partial only includes information that requires semantic analysis.. enum: [ none, partial, full ], (default: full)
---             semantic_tokens = "none",
---             -- zig_lib_path: Zig library path, e.g. `/path/to/zig/lib/zig`, used to analyze std library imports. (default: null)
---             zig_lib_path = "C:/tools/zig-windows-x86_64-0.13.0/lib",
---             -- completion_label_details: When false, the function signature of completion results is hidden. Improves readability in some editors. (default: true)
---             completion_label_details = true,
---
---             -- enable_build_on_save: Whether to enable build-on-save diagnostics. (default: false)
---             -- build_on_save_step: Select which step should be executed on build-on-save. (default: install)
---             -- enable_autofix: Whether to automatically fix errors on save. Currently supports adding and removing discards.. (default: false)
---             -- inlay_hints_show_variable_type_hints: Enable inlay hints for variable types. (default: true)
---             -- inlay_hints_show_struct_literal_field_type: Enable inlay hints for fields in struct and union literals. (default: true)
---             -- inlay_hints_show_parameter_name: Enable inlay hints for parameter names. (default: true)
---             -- inlay_hints_show_builtin: Enable inlay hints for builtin functions. (default: true)
---             -- inlay_hints_exclude_single_argument: Don't show inlay hints for single argument calls. (default: true)
---             -- inlay_hints_hide_redundant_param_names: Hides inlay hints when parameter name matches the identifier (e.g. foo: foo). (default: false)
---             -- inlay_hints_hide_redundant_param_names_last_token: Hides inlay hints when parameter name matches the last token of a parameter node (e.g. foo: bar.foo, foo: &foo). (default: false)
---             -- warn_style: Enables warnings for style guideline mismatches. (default: false)
---             -- highlight_global_var_declarations: Whether to highlight global var declarations. (default: false)
---             -- skip_std_references: When true, skips searching for references in std. Improves lookup speed for functions in user's code. Renaming and go-to-definition will continue to work as is. (default: false)
---             -- prefer_ast_check_as_child_process: Favor using `zig ast-check` instead of ZLS's fork. (default: true)
---             -- builtin_path: Path to 'builtin;' useful for debugging, automatically set if let null. (default: null)
---             -- zig_exe_path: Zig executable path, e.g. `/path/to/zig/zig`, used to run the custom build runner. If `null`, zig is looked up in `PATH`. Will be used to infer the zig standard library path if none is provided. (default: null)
---             -- build_runner_path: Path to the `build_runner.zig` file provided by ZLS. null is equivalent to `${executable_directory}/build_runner.zig`. (default: null)
---             -- global_cache_path: Path to a directory that will be used as zig's cache. null is equivalent to `${KnownFolders.Cache}/zls`. (default: null)
---         }
---     }
--- })

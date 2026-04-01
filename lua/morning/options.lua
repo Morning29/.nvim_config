@@ -28,7 +28,7 @@ if is_wsl then
 end
 
 -- Emulate standard status line with 'ruler' set (:h statusline)
-vim.opt.statusline = [[ %<%f %h%m%r%=%-14.(%l,%c%V%) %P ]]
+vim.opt.statusline = [[ %<%f %h%m%r%=%-14.(%y - %l,%c%V%) %P ]]
 
 vim.opt.rnu = true
 vim.opt.nu = true

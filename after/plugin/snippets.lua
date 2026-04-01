@@ -1,5 +1,3 @@
-local ls = require("luasnip")
-
 local function trim(s)
     return s:match '^()%s*$' and '' or s:match '^%s*(.*%S)'
 end
@@ -25,33 +23,43 @@ local PERF = function() return todo_keyword("PERF") end
 local FIXME = function() return todo_keyword("FIXME") end
 local WARN = function() return todo_keyword("WARNING") end
 local NOCOMMIT = function() return todo_keyword("NOCOMMIT") end
-local BINDLESS = function() return todo_keyword("@BINDLESS") end
 
-local snippet_datas = {
-    { trig = "todo",           namr = "todo comment",     fun_node = TODO },
-    { trig = "todo_only_date", namr = "dated comment",    fun_node = COMMENT },
-    { trig = "todo_resume",    namr = "resume comment",   fun_node = RESUME },
-    { trig = "todo_note",      namr = "note comment",     fun_node = NOTE },
-    { trig = "todo_hack",      namr = "hack comment",     fun_node = HACK },
-    { trig = "todo_perf",      namr = "perf comment",     fun_node = PERF },
-    { trig = "todo_fixme",     namr = "fixme comment",    fun_node = FIXME },
-    { trig = "todo_warning",   namr = "warning comment",  fun_node = WARN },
-    { trig = "todo_nocommit",  namr = "nocommit comment", fun_node = NOCOMMIT },
-    { trig = "todo_bindless",  namr = "bindless comment", fun_node = BINDLESS },
+local todo_snippet_datas = {
+    { trig = "todo",           namr = "TODO comment",     fun_node = TODO },
+    { trig = "todo_only_date", namr = "DATED comment",    fun_node = COMMENT },
+    { trig = "todo_resume",    namr = "RESUMe comment",   fun_node = RESUME },
+    { trig = "todo_note",      namr = "NOTE comment",     fun_node = NOTE },
+    { trig = "todo_hack",      namr = "HACK comment",     fun_node = HACK },
+    { trig = "todo_perf",      namr = "PERF comment",     fun_node = PERF },
+    { trig = "todo_fixme",     namr = "FIXME comment",    fun_node = FIXME },
+    { trig = "todo_warning",   namr = "WARNING comment",  fun_node = WARN },
+    { trig = "todo_nocommit",  namr = "NOCOMMIT comment", fun_node = NOCOMMIT },
 }
 
 local all_snips = {}
 
-for _, data in pairs(snippet_datas) do
+local luasnip = require("luasnip")
+for _, data in pairs(todo_snippet_datas) do
     table.insert(all_snips,
-        ls.snippet({
+        luasnip.snippet({
             trig = data.trig,
             namr = data.namr,
         }, {
-            ls.function_node(data.fun_node, {}),
-            ls.insert_node(1, ""),
+            luasnip.function_node(data.fun_node, {}),
+            luasnip.insert_node(1, ""),
         })
     )
 end
 
-ls.add_snippets(nil, { all = all_snips })
+table.insert(all_snips,
+    luasnip.snippet({
+        trig = "oddname",
+        namr = "Odin name struct field with `odd:\"named_by\"` annotation",
+    }, {
+        luasnip.text_node("name: string `odd:\"named_by\"`,", {}),
+        luasnip.text_node("", {}),
+        luasnip.insert_node(1, ""),
+    })
+)
+
+luasnip.add_snippets(nil, { all = all_snips })

@@ -1,6 +1,26 @@
-local treesitter_enabled_langs = { "c", "lua", "vim", "vimdoc", "query", "rust", "cpp", "zig", "odin", "py", "glsl",
-    "markdown", }
+local treesitter_enabled_langs = {
+    "c",
+    "lua",
+    "vim",
+    "vimdoc",
+    "query",
+    "rust",
+    "cpp",
+    "zig",
+    "odin",
+    "python",
+    "glsl",
+    "markdown",
+    "slang",
+}
 require 'nvim-treesitter'.install(treesitter_enabled_langs)
+
+for i, value in pairs(treesitter_enabled_langs) do
+    if value == "slang" then
+        treesitter_enabled_langs[i] = "shaderslang"
+    end
+end
+
 vim.api.nvim_create_autocmd('FileType', {
     pattern = treesitter_enabled_langs,
     callback = function()

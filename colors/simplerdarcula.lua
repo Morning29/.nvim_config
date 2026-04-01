@@ -132,22 +132,22 @@ local c = {
     NONE            = "none",
 
     fg_normal       = fg_normal,
-    fg_normal_sbar  = "#707070",
-    fg_float_sbar   = "#707070",
-    fg_punctuation  = "#b0b0b0",
+    fg_normal_sbar  = "#747474", -- "#707070",
+    fg_float_sbar   = "#747474", -- "#707070",
+    fg_punctuation  = fg_normal, -- "#b4b4b4", -- "#b0b0b0",
     fg_string       = "#91b3d8",
     fg_number       = "#FFFFFF",
-    fg_type         = "#b0b0b0",
+    fg_type         = "#b4b4b4", -- "#b0b0b0",
     fg_builtintype  = "#fcd3af",
     fg_special      = "#fcd3af",
     fg_operator     = fg_normal,
-    fg_border       = "#303030", -- "#303030", -- buffer separator
-    fg_comment      = "#707070",
+    fg_border       = "#343434", -- "#303030", -- buffer separator
+    fg_comment      = "#747474", -- "#707070",
     fg_keyword      = "#fcd3af",
     fg_keyword_dim  = "#907964",
-    fg_cursorlinenr = "#707070", -- cursorlinenr
-    fg_whitespace   = "#323232", -- cursorlinenr
-    fg_gutter       = "#474747", -- line number
+    fg_cursorlinenr = "#747474", -- "#707070", -- cursorlinenr
+    fg_whitespace   = "#343434", -- "#303030", -- cursorlinenr
+    fg_gutter       = "#4b4b4b", -- "#474747", -- line number
     fg_sidebar      = "#ff00ff",
     fg_variable     = "#e0e2ea",
     -- fg_function     = "#996c46",
@@ -159,27 +159,27 @@ local c = {
     fg_statement    = "#fcd3af", -- statement, identifier,
     fg_identifier   = fg_normal, -- statement, identifier,
     fg_todo         = "#a6c43d",
-    fg_unused       = "#707070", -- unused function, unused variable
+    fg_unused       = "#747474", -- "#747474", -- unused function, unused variable
     fg_constant     = fg_normal, -- number (remap), boolean, matched brace (remap), constant
     fg_editor       = "#ff9e64",
     fg_editor_dim   = "#915a39",
     fg_motion_label = "#dd0070",
 
-    bg_faint        = "#282828", -- "#282828",
-    bg_light        = "#303030", -- "#303030",
-    bg_dark         = "#222222", -- "#222222",
-    bg_border       = "#202020", -- "#202020",
-    bg_normal       = "#242424", -- "#242424", -- TODO: if using light theme then light and vice versa
-    bg_normal_sbar  = "#303030", -- "#303030", -- TODO: if using light theme then light and vice versa
-    bg_float        = "#424242", -- "#424242", -- TODO: if using light theme then dark and vice versa
-    bg_float_sbar   = "#464646", -- "#464646", -- TODO: if using light theme then dark and vice versa
-    bg_cursorline   = "#2b2b2b", -- "#2b2b2b",
-    bg_visual       = "#42372C", -- "#42372C",
+    bg_faint        = "#2c2c2c", -- "#282828",
+    bg_light        = "#343434", -- "#303030",
+    bg_dark         = "#262626", -- "#222222",
+    bg_border       = "#242424", -- "#202020",
+    bg_normal       = "#282828", -- "#242424", -- TODO: if using light theme then light and vice versa
+    bg_normal_sbar  = "#343434", -- "#303030", -- TODO: if using light theme then light and vice versa
+    bg_float        = "#464646", -- "#424242", -- TODO: if using light theme then dark and vice versa
+    bg_float_sbar   = "#4a4a4a", -- "#464646", -- TODO: if using light theme then dark and vice versa
+    bg_cursorline   = "#2f2f2f", -- "#2b2b2b",
+    bg_visual       = "#4C3A27", -- "#42372C",
     bg_search       = "#2d4c9d", -- "#2d4c9d",
     bg_incsearch    = "#2e58c1", -- "#2e58c1",
     bg_cursearch    = "#11709b", -- "#11709b",
-    bg_sidebar      = "#242424", -- "#242424",
-    bg_statusline   = "#303030", -- "#303030",
+    bg_sidebar      = "#282828", -- "#242424",
+    bg_statusline   = "#343434", -- "#303030",
 
     diag            = {
         fg_error             = "#e26a75",
@@ -422,6 +422,7 @@ local lsp_groups = {
     ["@lsp.type.enumMember.odin"]           = { link = "Constant" },
     ["@lsp.typemod.variable.readonly.odin"] = { link = "Constant" },
     ["@lsp.typemod.enum.readonly.odin"]     = { link = "Type" },
+    ["@lsp.type.type.shaderslang"]          = { link = "Type" },
     -- ["@lsp.type.enumMember.odin"]          = { link = "Constant" },
     -- ["@lsp.type.comment"] = { link = "@comment" },
     -- ["@lsp.type.decorator"] = { link = "@attribute" },
@@ -463,6 +464,7 @@ local treesitter_groups = {
     ["@attribute.odin"]           = { link = "Keyword" },
     ["@punctuation.special.odin"] = { link = "Keyword" },
     ["@variable.member.odin"]     = { link = "Field" },
+    ["shaderslangType"]           = { link = "Keyword" },
 }
 
 local mini_cursorword_groups = {

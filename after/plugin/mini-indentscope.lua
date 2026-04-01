@@ -4,11 +4,11 @@ require("mini.indentscope").setup({
     draw = { animation = require("mini.indentscope").gen_animation.none(), },
     mappings = {
         -- Textobjects
-        object_scope = "hi",
-        object_scope_with_border = "hI",
+        object_scope = "hs",
+        object_scope_with_border = "hS",
 
         -- Motions (jump to respective border line; if not present - body line)
-        goto_top = "[i",
-        goto_bottom = "]i",
+        goto_top = "[s",
+        goto_bottom = "]s",
     },
 })

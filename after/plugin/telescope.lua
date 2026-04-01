@@ -44,8 +44,13 @@ require('telescope').setup({
         borderchars = { " ", " ", " ", " ", " ", " ", " ", " " }, -- { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
         selection_caret = '  ',
         file_ignore_patterns = {
-            "^src_old/",
-            "^src_old\\",
+            -- "^dir_name/",
+            -- "^dir_name\\",
+            "%\\nvidia_samples\\",
+            "%/nvidia_samples/",
+            "%/.git/",
+            "%\\.git\\",
+            "%.ggb",
             "%.bin",
             "%.dds",
             "%.ttf",
@@ -66,7 +71,10 @@ require('telescope').setup({
         },
     },
     pickers = {
-        lsp_definitions = { fname_width = 60 }
+        -- lsp_definitions = { fname_width = 60 },
+        find_files = {
+            hidden = true,
+        }
     }
 })
 
