@@ -1,3 +1,7 @@
+if vim.g.deps_loaded then
+    return
+end
+
 -- Clone 'mini.nvim' manually in a way that it gets managed by 'mini.deps'
 local path_package = vim.fn.stdpath('data') .. '/site/'
 local mini_path = path_package .. 'pack/deps/start/mini.nvim'
@@ -43,6 +47,20 @@ add({
     depends = { 'nvim-lua/plenary.nvim' },
 })
 
+add({ source = '/stevearc/oil.nvim' })
+
+add({
+    -- source = "JezerM/oil-lsp-diagnostics.nvim",
+    source = "Morning29/oil-lsp-diagnostics-windows-fix.nvim",
+    depends = { "stevearc/oil.nvim" },
+})
+
+add({
+    source = "malewicz1337/oil-git.nvim",
+    depends = { "stevearc/oil.nvim" }
+})
+
+add({ source = 'folke/lazydev.nvim' })
 add({ source = 'L3MON4D3/LuaSnip' })
 add({ source = 'rafamadriz/friendly-snippets' })
 add({ source = 'mbbill/undotree' })
@@ -59,5 +77,7 @@ add({ source = 'junegunn/vim-easy-align' })
 add({ source = 'lewis6991/gitsigns.nvim' })
 add({ source = 'rafcamlet/nvim-luapad' })
 add({ source = 'folke/flash.nvim' })
-add({ source = 'norcalli/nvim-colorizer.lua' })
 add({ source = 'stevearc/conform.nvim' })
+
+
+vim.g.deps_loaded = true

@@ -5,6 +5,9 @@ local compare = require('cmp.config.compare')
 require('luasnip.loaders.from_vscode').lazy_load()
 
 cmp.setup({
+    view = {
+        entries = "custom" -- can be "custom", "wildmenu" or "native"
+    },
     sources = {
         {
             name = 'nvim_lsp',
@@ -14,7 +17,7 @@ cmp.setup({
             -- return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Keyword'
             -- end
         },
-        { name = 'nvim_lua' },
+        -- { name = 'nvim_lua' },
         { name = 'luasnip', option = { show_autosnippets = true } },
         { name = 'path' },
         {
@@ -26,6 +29,10 @@ cmp.setup({
                 end,
                 preselect_correct_word = true,
             },
+        },
+        {
+            name = "lazydev",
+            group_index = 0, -- set group index to 0 to skip loading LuaLS completions
         },
     },
     ---
@@ -58,7 +65,13 @@ cmp.setup({
     },
     ---
     performance = {
-        max_view_entries = 50,
+        debounce                 = 60,
+        throttle                 = 30,
+        fetching_timeout         = 500,
+        filtering_context_budget = 3,
+        confirm_resolve_timeout  = 80,
+        async_budget             = 1,
+        max_view_entries         = 50, -- 200,
     },
     ---
     formatting = {
@@ -69,8 +82,9 @@ cmp.setup({
                 item.menu = ""
             end
             item.menu = (({
+                lazydev = "[lzy]",
                 nvim_lsp = "[lsp]",
-                nvim_lua = "[vim]",
+                -- nvim_lua = "[vim]",
                 path = "[pth]",
                 luasnip = "[snp]",
                 spell = "[spl]",
@@ -167,13 +181,14 @@ cmp.setup.cmdline(":", {
         end, { "c" }),
         ["<CR>"] = cmp.mapping({
             i = function(fallback)
-                if cmp.visible() and cmp.get_active_entry() then
+                if cmp.visible() and cmp.get_selected_entry() then
                     cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
                 else
                     fallback()
                 end
             end,
             s = cmp.mapping.confirm({ select = true }),
+            c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
         }),
     },
     sources = cmp.config.sources(
